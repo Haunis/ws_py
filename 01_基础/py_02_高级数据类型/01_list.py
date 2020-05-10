@@ -21,7 +21,7 @@ print("--------------3.增加---------------------")
 name_list.append("append0")  # 添加一个元素,如果添加的是个列表,就把列表当做一个元素
 name_list.insert(0, "insert0")
 name_list2 = ["su0", "su1", "su2"]
-name_list.extend(name_list2)
+name_list.extend(name_list2)  # 扩展列表
 print(name_list)
 
 print("--------------4.删除---------------------")

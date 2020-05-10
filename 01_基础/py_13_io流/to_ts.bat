@@ -1,0 +1,1 @@
+copy /b abc0+abc1+abc2+abc3+abc4 new.ts

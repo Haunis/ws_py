@@ -17,10 +17,12 @@ os.path.isdir(file) 是否是文件
 """
 import os
 
-print(os.__file__)
-print(os.__name__)
+print("os.__file__: %s" % os.__file__)
+print("os.__name__: %s" % os.__name__)
 
-print(os.listdir("."))  # 返回一个数组
-print(os.path.isdir("./abc.txt"))
-os.chdir()
-os.chdir()
+print(os.listdir("."))
+print("abc.txt is_dir?:%s " % os.path.isdir("./abc.txt"))
+# os.chdir()
+file_list = os.listdir(".")  # 返回一个数组
+
+
