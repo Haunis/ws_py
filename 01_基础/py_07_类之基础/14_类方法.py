@@ -12,7 +12,6 @@ class Tool:
     @classmethod  # 定义类方法
     def print_count(cls):
         print("count = %d" % Tool.count)
-        print("count = %d" % Tool.count)
         print("count = %d" % cls.count)  # 两种方式均可
 
     def __init__(self, name):

@@ -27,7 +27,7 @@ empty_tuple = ()
 print("type(empty_tuple) = %s" % type(empty_tuple))
 
 print("-------------3.定义只包含一个元素的元组----------------")
-single_tuple = ("lee",)  # 如果不带逗号，single_tuple是int类型
+single_tuple = ("lee",)  # 如果不带逗号，single_tuple是str类型
 print("type(single_tuple):%s" % type(single_tuple))
 
 print("-------------4.index----------------")

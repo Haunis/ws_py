@@ -9,6 +9,12 @@ class MusicPlayer:
     instance = None
     init_flag = False
 
+    @classmethod #不会调用 __init__()
+    def get_instance(cls):
+        if cls.instance is None:
+            cls.instance = super().__new__(cls)
+        return cls.instance
+
     def __new__(cls, *args, **kwargs):
         if cls.instance is None:
             cls.instance = super().__new__(cls)
@@ -20,8 +26,13 @@ class MusicPlayer:
             print("init called")
 
 
+
+
+music_instance = MusicPlayer.get_instance()
 music_player1 = MusicPlayer()
 music_player2 = MusicPlayer()
 
+print(music_instance)
 print(music_player1)
 print(music_player2)
+
