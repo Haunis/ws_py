@@ -21,11 +21,18 @@ print("str.index(\"hel\") : %s" % str.index("hel"))  # 获取字符串中首次�
 # unicode字符串
 # num = "⑴" #False True True
 # num = "\u00b2" #False True True
-num = "一千零一"  # 中文字符串 False False True
+num = "一千零一"  # 中文字符串
 # 三者从上往下,判断的范围越来越大
-print(num.isdecimal())  # 开发时尽量选这个方法
-print(num.isdigit())  # 可以判断unicode数字字符
-print(num.isnumeric())  # 可以判断中文字符
+print(num.isdecimal())  # False 开发时尽量选这个方法
+print(num.isdigit())  # False 可以判断unicode数字字符
+print(num.isnumeric())  # True可以判断中文字符
+
+str_abc1 = "abcddddd"
+str_abc2 = "abcddddd"
+print("id(str_abc1)=%d" % id(str_abc1))
+print("id(str_abc2)=%d" % id(str_abc2))
+print("str_abc1==str_abc2 : %s" % (str_abc1 == str_abc2))  # True
+print("str_abc1 is str_abc2 : %s" % (str_abc1 is str_abc2))  # True
 
 print("-----------------------2.查找和替換---------------------------")
 test_str = "hello,python"
