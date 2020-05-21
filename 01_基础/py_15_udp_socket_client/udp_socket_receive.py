@@ -11,7 +11,7 @@ def main():
 
     # 3.接受数据
     while True:
-        receive_data = receive_socket.recvfrom(1024)  # 本次接收的最大字节，一般为1024
+        receive_data = receive_socket.recvfrom(1024)  # 线程阻塞；本次接收的最大字节，一般为1024
         # print("origin:%s" % str(receive_data))  # (b'dfsdf', ('192.168.1.11', 43325))
 
         print("msg:%s  , from:%s" % (receive_data[0].decode("utf-8"), str(receive_data[1])))
