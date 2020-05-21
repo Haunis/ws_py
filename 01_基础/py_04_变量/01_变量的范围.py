@@ -25,7 +25,7 @@
 """
 
 gl_num = 12  # 全局变量
-print("id(num_global)=%#x" % id(gl_num))
+print("id(gl_num)=%#x" % id(gl_num))
 
 
 def modify_num():

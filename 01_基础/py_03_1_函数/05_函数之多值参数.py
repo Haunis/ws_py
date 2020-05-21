@@ -13,3 +13,5 @@ def fun(num, *args, **kwargs):
 
 
 fun(1, 2, 3, 4, name="lee", age=12)
+
+fun(1, (2, 3, 4), {"name": "lee", "age": 12})  # 不可以这样传
