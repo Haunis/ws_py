@@ -36,7 +36,7 @@ print("id(result_tuple[1]):%#x" % id(result_tuple[1]))
 print("result_tuple:", result_tuple)
 
 print("\n\n--------------2.两个变量接收返回值--------------------")
-gl_height, gl_width = measure()
+gl_height, gl_width = measure()  # 拆包
 print("id(gl_height):%#x" % id(gl_height))
 print("id(gl_width):%#x" % id(gl_width))
 print("gl_height:%d, gl_width:%d" % (gl_height, gl_width))
@@ -49,7 +49,6 @@ a = a + b
 b = a - b
 a = a - b
 print("交换后：a=%d,b=%d" % (a, b))
-
 
 # 使用python特有的方式进行交换
 a = 2

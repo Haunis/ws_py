@@ -1,5 +1,7 @@
+#! /usr/bin/python3
 """
 做一个简易的半双工聊天程序
+UDP是不分客户端和服务器的
 半双工：就像对讲机一样，接收和发送不能同时进行。注意：socket是全双工的
 
 运行：
@@ -29,7 +31,9 @@ def send_msg(my_socket):
 
 
 def receive_msg(my_socket):
-    msg = my_socket.recvfrom(1024)
+    msg = my_socket.recvfrom(1024)  # 阻塞; msg:(b'dfsdf', ('192.168.1.11', 43325))
+    print(msg)
+    print(type(msg[0]))
     print("msg: %s" % str(msg))
 
 

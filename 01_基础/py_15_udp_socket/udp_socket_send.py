@@ -25,6 +25,8 @@ def main():
             print("退出程序")
             break;
         # udp_socket.sendto(b"hhaha", ("192.168.1.11", 8080)) #第一个参数为字节，第二个参数为目标的ip和端口
+        # 每次都要写ip和port
+        # TCP使用的是send()
         udp_socket.sendto(input_str.encode("utf-8"), ("192.168.1.12", 7788))
         # print("send: %s" % input_str)
 

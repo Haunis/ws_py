@@ -18,6 +18,9 @@
 
 导入模块部分工具时也可以起别名
     from xxxmodule import say_hello as my_say_hello
+
+导入模块优先级:
+    先从本工程查找，没有找到的话，到系统中找
 """
 
 from py_05_模块 import dog_module as DogModule
