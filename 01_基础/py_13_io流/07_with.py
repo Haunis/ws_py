@@ -1,0 +1,8 @@
+# -*-coding:utf-8-*-
+
+# with 会自动调用file.close()
+
+with open("abc.txt") as f:
+    data = f.read()
+    print("type(data):%s" % type(data))
+    print(data)
