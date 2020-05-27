@@ -1,6 +1,7 @@
 # -*-coding:utf-8-*-
 
 # with 会自动调用file.close()
+# with 在以写的方式打开文件的时候经常用
 
 with open("abc.txt") as f:
     data = f.read()
