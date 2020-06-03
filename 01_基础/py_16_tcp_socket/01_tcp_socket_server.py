@@ -10,6 +10,7 @@ def main():
     # 监听套接字负责等待新的客户端进行链接（电话局总机）
     tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
+
     # 2.绑定端口；服务器需要绑定端口
     local_address = ("", 8888)  # ip不写，表示本机任意一个ip
     tcp_server_socket.bind(local_address)
@@ -21,6 +22,7 @@ def main():
     # 4.等待客户端链接;accept产生的新的套接字负责为客户端服务(收发数据,理解为具体的人工服务),这个套接字标记客户端
     print("---------begain accept-----------")
     new_tcp_client_socket, client_address = tcp_server_socket.accept()  # <<<<<阻塞>>>>>;client_address是元组;客户端调用connect(）会解阻塞
+
     print("client_address:%s" % str(client_address))
     print("---------end accept-----------")
 

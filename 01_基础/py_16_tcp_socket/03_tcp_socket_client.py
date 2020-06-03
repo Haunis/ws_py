@@ -1,7 +1,9 @@
 #! /usr/bin/python3
+
 """
 客户端可以不绑定端口
 """
+
 
 import socket
 
@@ -13,6 +15,7 @@ def main():
     server_ip = input("please input server ip:")
     server_port = int(input("please input server port:"))
     server_address = (server_ip, server_port)
+
     tcp_socket.connect(server_address)  # 面向链接的通信
 
     # 3.发送数据
