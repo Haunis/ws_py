@@ -40,7 +40,7 @@ DogModule.multiple_table()
 print("-----------------2.调用模块类-----------------")
 dog = DogModule.Dog("旺财")
 dog.run()
-print(dog)
+print("dog: %s" % dog)
 
 cat = Cat("tom")
 cat.run()

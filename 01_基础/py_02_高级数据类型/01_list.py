@@ -59,3 +59,8 @@ print("reverse_list = %s" % reverse_list)
 print("--------------8.遍历---------------------")
 for var in reverse_list:
     print(var)
+
+for temp in enumerate(reverse_list):
+    print(temp)  # temp是个元组
+for i, value in enumerate(reverse_list):  # 使用i value接收，拆包
+    print(i, value)
