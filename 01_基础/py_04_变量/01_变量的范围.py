@@ -12,6 +12,7 @@
 
 函数内部修改全局变量:
     变量使用global修饰即可,告诉解释器此变量是全局变量,不是新创建的局部变量
+    如果变量指向的地址不变可以不加global修饰,如list
 
 全局变量建议定义的位置:
     定义在所有函数上方,这样所有函数都能访问的到
@@ -25,6 +26,7 @@
 """
 
 gl_num = 12  # 全局变量
+num_list = [11, 22]
 print("id(gl_num)=%#x" % id(gl_num))
 
 
@@ -32,7 +34,11 @@ def modify_num():
     global gl_num  # 告诉解释器此变量是全局变量不是局部变量;修改此值,会直接修改全局变量的值
     gl_num = 8888  # 如果不使用 global修饰,此变量只是定义一个局部变量,修改此值不会修改全局变量的值
     print("modify_num ,gl_num=%d, id(num_global)=%#x" % (gl_num, id(gl_num)))
+    num_list.append(33)  # num_list指向的地址不变,可以不加global修饰
+    num_list.extend([100, 200])
 
 
 modify_num()
 print("num_global=%d, id(gl_num)=%#x" % (gl_num, id(gl_num)))  # 还是12
+
+print(num_list)
