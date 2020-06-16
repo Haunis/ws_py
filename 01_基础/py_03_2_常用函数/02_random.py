@@ -4,7 +4,8 @@ import random
     导入random模块,生成随机整数
     result = random(a,b)# 生成的随机数在[a,b]之间,a必须小于等于b
 """
-
+count = random.random()
+print("count = %f" % count)
 random_int = random.randint(1, 10)
 
 print("random_int = %d" % random_int)

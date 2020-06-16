@@ -2,7 +2,7 @@
 就是数组
 使用 += 实际上是调用了列表的extend()方法
 
-创建空列表: empty_list = []
+创建空列表: empty_list = []或者 empty_list = list()
 """
 
 name_list = ["lee0", "lee1", "lee2"]  # 在python3解释器程序中输入name_list.按tab键会有提示可以使用哪些方法
