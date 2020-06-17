@@ -1,6 +1,7 @@
 # -*-coding:utf-8-*-
 """
 通过进程池创建的子进程,主进程不会等待其结束才结束
+进程池中的进程有异常信息的话，不会报异常
 
 """
 from multiprocessing import Pool
