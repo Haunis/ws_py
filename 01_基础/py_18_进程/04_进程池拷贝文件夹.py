@@ -27,7 +27,7 @@ def copy_file(queue, src_dir_name, src_file_name, dst_dir_name):
     src_file.close()
     dst_file.close()
 
-    time.sleep(0.1)  # 拷贝太快,暂停0.1s
+    time.sleep(0.05)  # 拷贝太快,暂停0.05s
     queue.put(src_file_name)
 
 
