@@ -16,7 +16,7 @@ python super:
 
 class Animal:
     def run(self):
-        print("animal run")
+        print("animal run %s" % str(self))  # 子类调用的话,self就是子类
 
 
 class Dog(Animal):

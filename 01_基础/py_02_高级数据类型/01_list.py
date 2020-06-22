@@ -64,3 +64,6 @@ for temp in enumerate(reverse_list):
     print(temp)  # temp是个元组
 for i, value in enumerate(reverse_list):  # 使用i value接收，拆包
     print(i, value)
+
+temp_list = range(10)  # 返回range对象,什么时候取,什么时候生成,节省内存
+print(temp_list[3])  # 第四个元素
