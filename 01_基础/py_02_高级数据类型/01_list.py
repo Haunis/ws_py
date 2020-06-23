@@ -65,5 +65,11 @@ for temp in enumerate(reverse_list):
 for i, value in enumerate(reverse_list):  # 使用i value接收，拆包
     print(i, value)
 
+print("--------------9.range---------------------")
 temp_list = range(10)  # 返回range对象,什么时候取,什么时候生成,节省内存
 print(temp_list[3])  # 第四个元素
+
+print("--------------10.列表推导式---------------------")
+temp_list2 = [x for x in range(10)]  # 返回的是个列表
+print("type(temp_list) : ", type(temp_list2))
+print(temp_list2)
