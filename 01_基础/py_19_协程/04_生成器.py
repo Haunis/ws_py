@@ -3,9 +3,12 @@
 
 生成器是一个特殊的迭代器
 创建生成器方式1： temp = (x for x in range(10))
-创建生成器方式2： 函数中有yield语句
+创建生成器方式2： 函数中有yield语句就是生成器
 
 如果一个函数中有yield,则这个函数不是函数，是生成器模板
+
+生成器特点:
+    "函数"执行到yield处,能够暂停执行,并且在下次调用next()或者send()方法时能够恢复执行
 
 """
 
@@ -32,8 +35,9 @@ def create_num(num_count):
 
 obj = create_num(10)
 
-ret = next(obj)
+# 启动迭代器
+ret = next(obj)  # 第一次调用next,从create_num()入口处调用
 print("ret = ", ret)
 
-ret = next(obj)
+ret = next(obj)  # 第二次调用next,从yield后调用
 print("ret = ", ret)

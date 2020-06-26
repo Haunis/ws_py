@@ -1,6 +1,7 @@
 #! /usr/bin/python3
 """
 判断某个数据类型a是否可以迭代： isinstance(stu,Iterable)
+只要是迭代器,就可以用next()启动
 自定义对象可迭代的条件:
     1.实现__iter__(self)方法;实现该方法后isinstance(stu,Iterable)就返回true
     2.__iter__(self)返回自定义迭代器 MyIterator
@@ -16,7 +17,7 @@ for循环每走一次都会调用迭代器的__next__(self)方法
 迭代器一定是可迭代对象;但可迭代对象不一定是迭代器
 
 """
-from collections import Iterable
+from collections.abc import Iterable
 import time
 
 
@@ -54,6 +55,7 @@ def main():
     stu = Student()
     is_iterable = isinstance(stu, Iterable)  # 是否是Iterable的实例(子类也行)
     print("is_iterable = %s" % is_iterable)
+    print("iter(stu): ", iter(stu))  # 自动调用可迭代对象的__iter__()方法
 
     stu.add("张三")
     stu.add("李四")
