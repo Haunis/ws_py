@@ -13,19 +13,29 @@ greenlet是基于yield的封装
 from greenlet import greenlet
 import time
 
+g_count = 0;
+
 
 def task_1():
+    global g_count  # 使用global修饰可以访问并修改全局变量，否则只能当作局部变量修改
     while True:
         print("1")
         gr2.switch()  # 切换到gr2执行
         time.sleep(0.5)
+        g_count += 1
+        if g_count > 10:
+            break
 
 
 def task_2():
+    global g_count
     while True:
         print("2")
         gr1.switch()
         time.sleep(0.5)
+        g_count += 1
+        if g_count > 10:
+            break
 
 
 gr1 = greenlet(task_1)
