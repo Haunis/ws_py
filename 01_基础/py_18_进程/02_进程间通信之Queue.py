@@ -10,11 +10,13 @@ Queue:
     只能用在同一个程序里的多个进程,而且是同一台电脑
 """
 import multiprocessing
+import time
 
 
 def put_msg(queue):
     temp_list = [11, 22, 33]
     for data in temp_list:
+        time.sleep(1)  # 取队列的进程取完一个后队列对空,取队列的进程退出
         queue.put(data)
     print("put_msg execute: %s" % str(temp_list))
 
@@ -23,7 +25,8 @@ def get_msg(queue):
     # temp_list = []
     temp_list = list()
     while True:
-        data = queue.get()
+        print("get_msg executed...")
+        data = queue.get()  # 阻塞;直到队列可用为止;队列可用后不再阻塞,有啥取啥
         temp_list.append(data)
         if queue.empty():
             break

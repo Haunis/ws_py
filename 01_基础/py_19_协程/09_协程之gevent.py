@@ -16,8 +16,12 @@ gevent遇到耗时任务就会切换,如join(),gevent.sleep(),socket的accept(),
 解决方法:1.import monkey 2.monkey.pacth_all()
 原理: monkey重新打包代码,将系统的耗时任务切换成gevent的耗时任务
 
+gevent遇到耗时任务,会注册回调,并切换到主协程. 当回调有结果时会自动处理切换耗时的协程处理
+参考:https://www.zhihu.com/question/20703476/answer/15911452
+
 gevent意义:
 利用耗时时间去执行任务,本质还是单线程
+在网络请求比较多的情况下使用协程gevet效率可能要更高
 
 优化:
     当有多个函数需要调用时,使用如g1.join(), g2.join()比较繁琐
