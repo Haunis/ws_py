@@ -26,9 +26,13 @@
         \d{1,3}从1到3
         \d{11}只能11位
 ?   --"?"前面的有或者没有,如 "abc-?"匹配abc或者abc-均可
-*   --0或者多个; 如r".*"是匹配任意字符，除了\n（换行）
+*   --0或者多个; 如r".*"是匹配任意字符，除了\n（换行）;一位一位匹配，0或者没有，所以.*是匹配任意字符
 +   --至少有一个
+^   --从开头开始判断
+$   --判断到结尾；就是说要把需要的判断的字符串匹配到结尾
 
+re.match(r"[a-zA-Z]{3}","abc").group(); 取出匹配结果
+python里re.match()默认判断开头;但其他语言不见得
 
 
 
@@ -49,7 +53,7 @@ ret = re.match(r"abc", "abc")
 print(ret)
 
 print("------------------2.匹配数字\d-------------------------")
-ret = re.match(r"abc\d", "abc33")  # abc0~abc9都行,abc99999也行,但只能匹配出abc9
+ret = re.match(r"abc\d", "abc33")  # abc0~abc9都行,abc99999也行,但只能匹配出abc9--只能匹配出四位
 print(ret)
 
 print("------------------3.[]匹配多个-------------------------")
@@ -86,11 +90,20 @@ while True:
     temp_var = input("pleae input 变量名(end结束):")
     if temp_var == "end":
         break
-    ret = re.match(r"[a-zA-Z_]+[a-zA-Z0-9_]*", temp_var)  # 字母或下划线开头，后面跟数字字母下划线
+    ret = re.match(r"^[a-zA-Z_]+[a-zA-Z0-9_]*$", temp_var)  # 字母或下划线开头，后面跟数字字母下划线
     if ret is None:
         print("%s 无效" % temp_var)
     else:
-        if len(ret.group()) == len(temp_var):
-            print("%s 有效" % temp_var)
-        else:  # 如 abc_*#
-            print("%s 无效,含有非法字符：%s" % (temp_var, temp_var[len(ret.group()):]))
+        print("%s 有效" % temp_var)
+
+print("------------------10.判断邮箱-------------------------")
+# 邮箱要求：数字字母下划线开头，4～20位 "@126.com"结尾
+while True:
+    temp_var = input("pleae input 邮箱(end结束):")
+    if temp_var == "end":
+        break
+    ret = re.match(r"^[a-zA-Z0-9_]{4,20}@126.com$", temp_var)
+    if ret is None:
+        print("%s 无效" % temp_var)
+    else:
+        print("%s 有效" % temp_var)
