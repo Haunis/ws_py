@@ -1,6 +1,7 @@
 #! /usr/bin/python3
 # -*-coding:utf-8-*-
 """
+re.match() 从头开始匹配
 正则应用场景:
     1.匹配输入数据是否符合要求
     2.爬虫时,匹配想要的数据
@@ -28,12 +29,20 @@
 ?   --"?"前面的有或者没有,如 "abc-?"匹配abc或者abc-均可
 *   --0或者多个; 如r".*"是匹配任意字符，除了\n（换行）;一位一位匹配，0或者没有，所以.*是匹配任意字符
 +   --至少有一个
-^   --从开头开始判断
+^   --从开头开始判断;python里re.match()默认判断开头;但其他语言不见得
 $   --判断到结尾；就是说要把需要的判断的字符串匹配到结尾
+\   --转义;如\.表示匹配.
+|   --或;符号两边的正则都可以,如 aa|bb,aa和bb都可以匹配
 
-re.match(r"[a-zA-Z]{3}","abc").group(); 取出匹配结果
-python里re.match()默认判断开头;但其他语言不见得
+()  --分组字符,可用来定义"|"的范围;也可以使用group(1)取出()里的内容,有多个()使用group(1),group(2)...
+        如(126|163)匹配126或者163
+    \1--引用分组1匹配到的字符串
+    (?P<p1>\w*)--给分组起别名，别名为p1;只有在标签比较多的时候给分组起别名，一般使用\1引用分组就行了
+    (?P=p1)--引用分组p1匹配到的字符串，引用的时候可以不使用"()"
 
+
+
+re.match(r"[a-zA-Z]{3}","abc").group(); 从头开始匹配，取出匹配结果
 
 
 """
@@ -102,8 +111,28 @@ while True:
     temp_var = input("pleae input 邮箱(end结束):")
     if temp_var == "end":
         break
-    ret = re.match(r"^[a-zA-Z0-9_]{4,20}@126.com$", temp_var)
+    ret = re.match(r"^[a-zA-Z0-9_]{4,20}@126\.com$", temp_var)
     if ret is None:
         print("%s 无效" % temp_var)
     else:
         print("%s 有效" % temp_var)
+
+print("------------------11.分组（）-------------------------")
+#以邮箱为例，数字字母下划线开头4～20位，“@126.com”或者“@163.com”结尾
+while True:
+    temp_var = input("pleae input 126或者163邮箱(end结束):")
+    if temp_var == "end":
+        break
+    ret = re.match(r"^([a-zA-Z0-9_]{4,20})@(126|163)\.com$", temp_var)
+    if ret is None:
+        print("%s 无效" % temp_var)
+    else:
+        print("%s 有效, group(1)=%s,group(2)=%s" % (temp_var,ret.group(1),ret.group(2)))
+
+print("开始匹配html标签....")
+#检查标签开头和结尾是否相符
+html_str = "<body><h1>abcd</h1></body>"
+# regex = r"^<(\w*)><(\w*)>.*</\2></\1>$"
+regex = r"^<(?P<p1>\w*)><(?P<p2>\w*)>.*</(?P=p2)></(?P=p1)>$"
+ret = re.match(regex,html_str)
+print(ret.group())
