@@ -1,6 +1,7 @@
 #! /usr/bin/python3
 """
 处理一次客户端交互就关闭
+也可以接收浏览器的请求,http协议是基于tcp协议的
 """
 import socket
 
@@ -30,7 +31,8 @@ def main():
     receive_data = new_tcp_client_socket.recv(1024)  # <<<<<阻塞>>>>>；设置接收的最大字节，receive_data是bytes类型;解阻塞：1.收到消息 2.客户端关了
     print(type(receive_data))
     print("receive_data:%s" % receive_data.decode("utf-8"))
-    new_tcp_client_socket.send("数据已收到".encode("utf-8"))
+    #new_tcp_client_socket.send("数据已收到".encode("utf-8"))
+    new_tcp_client_socket.send("HTTP/1.1 200 OK\r\n<h1>hhhahh</h1>".encode("utf-8"))
 
     # 6.关闭套接字
     new_tcp_client_socket.close()  # 不会在为此次链接的客户端服务

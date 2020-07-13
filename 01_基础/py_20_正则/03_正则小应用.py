@@ -79,24 +79,18 @@ origin_str = """
 """
 # print(origin_str)
 
-# origin_str = "<dl class=\"job_detail\" id=\"job_detail\">aaa"
-origin_str = """
-<dl class="job_detail" id="job_detail">
-    <dt class="clearfix join_tc_icon">
-    </dt>
-    <dd class="job-advantage">
-        <span class="advantage">职位诱惑：</span>
-        <p>补充公积金 年终奖 免费咖啡</p>
-    </dd>
-"""
-# ret = re.sub(r"<\w*>|</\w*>","",origin_str) #用空格替代标签
-# print(ret)
+# origin_str = """
+# <dl class="job_detail" id="job_detail">
+#     <dt class="clearfix join_tc_icon">
+#     </dt>
+#     <dd class="job-advantage">
+#         <span class="advantage">职位诱惑：</span>
+#         <p>补充公积金 年终奖 免费咖啡</p>
+#     </dd>
+# """
+ret = re.sub(r"<\w*>|<\w* .*\">|</\w*>|</\w* .*\">","",origin_str) #用空格替代标签
+print(ret)
 
-# origin_str="<pp>dfad<113>kdjfklj<abc kkk>"
-#ret = re.findall(r"(<\w*>)|(<\w* .*>)|(</\w*>)|(</\w* .*>)",origin_str)
-#ret = re.findall(r"<\w*>|<\w* .*>|</\w*>|</\w* .*>",origin_str)
-ret =  re.findall(r"<\w* .*>",origin_str)
-# ret = re.findall(r"<.*>",origin_str)
-# print(ret)
-for temp in ret:
-    print(temp)
+# ret =  re.findall(r"<\w*>|<\w* .*\">|</\w*>|</\w* .*\">",origin_str)
+# for temp in ret:
+#     print(temp)
