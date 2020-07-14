@@ -32,7 +32,8 @@ def main():
     print(type(receive_data))
     print("receive_data:%s" % receive_data.decode("utf-8"))
     #new_tcp_client_socket.send("数据已收到".encode("utf-8"))
-    new_tcp_client_socket.send("HTTP/1.1 200 OK\r\n<h1>hhhahh</h1>".encode("utf-8"))
+    #第一行是应答头，空一行，后面是应答body;使用浏览器可以直接访问：127.0.0.1:8888/a/b/c.html
+    new_tcp_client_socket.send("HTTP/1.1 200 OK\n\n<h1>hhhahh</h1>".encode("utf-8"))
 
     # 6.关闭套接字
     new_tcp_client_socket.close()  # 不会在为此次链接的客户端服务

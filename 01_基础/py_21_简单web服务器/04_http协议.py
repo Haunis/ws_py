@@ -1,10 +1,10 @@
 #-*-coding:utf-8-*-
 """
-http基于tcp
+http基于tcp,比udp稳定
 
 以下内容为浏览器请求tcp_socket_server.py,tcp_socket_server.py获取到的数据
 即浏览器请求的数据:
-########/a.html表示客户端请求的是哪个页面(路径)
+########/a.html表示客户端请求的是哪个页面(路径)，请求时至少有这一行
 GET /a.html HTTP/1.1
 ########服务器ip和端口
 Host: 127.0.0.1:8888

@@ -10,13 +10,16 @@
     6.str.isspace() # 是否是空白字符 ,\r \t \n都是空白字符
     7.str.replace(old_str,new_str) #返回一个新字符串,而不对原字符串改变
 
+注意事项：
+    str是个类，注意不要使用str作变量
+
 """
 print("-----------------------1.判断---------------------------")
-str = "hello ,hello python"
-print("str[0] : %s" % str[0])  # 获取某个索引的字符
-print("len(str) : %s" % len(str))  # 获取字符串长度
-print("str.count(\"hel\") : %s" % str.count("hel"))  # 获取字符串中某个子字符串出现的次数
-print("str.index(\"hel\") : %s" % str.index("hel"))  # 获取字符串中首次出现子字符串的索引
+my_str = "hello ,hello python"
+print("str[0] : %s" % my_str[0])  # 获取某个索引的字符
+print("len(str) : %s" % len(my_str))  # 获取字符串长度
+print("str.count(\"hel\") : %s" % my_str.count("hel"))  # 获取字符串中某个子字符串出现的次数
+print("str.index(\"hel\") : %s" % my_str.index("hel"))  # 获取字符串中首次出现子字符串的索引
 
 # unicode字符串
 # num = "⑴" #False True True
@@ -48,10 +51,10 @@ str_poem = [
     "举头望明月",
     "低头思故乡"
 ]
-for str in str_poem:
+for str_temp in str_poem:
     # print("|%s|"%str.ljust(10,"　"))#全角的空格就是中文空格
     # print("|%s|"%str.rjust(10,"　"))#宽度为10，文字居右对齐，不足是个的用空格补齐
-    print("|%s|" % str.center(10, "　"))
+    print("|%s|" % str_temp.center(10, "　"))
 
 str2 = "name"
 
@@ -74,6 +77,8 @@ print("result_list : %s" % result_list)
 
 result_join = "*".join(result_list)  # 使用*把列表中的元素拼接起来
 print("result_join : %s" % result_join)
+temp_str = "abcd" + str(123)  # 字符串拼接
+print(temp_str)
 
 print("-----------------------6.字符串切片---------------------------")
 # 就是字符串的截取; 索引-1代表最后一个元素
