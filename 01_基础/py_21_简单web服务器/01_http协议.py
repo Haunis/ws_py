@@ -2,6 +2,14 @@
 """
 http基于tcp,比udp稳定
 
+在浏览器查看服务器回复的数据:f12→NetWork标签→点开具体的链接
+
+浏览器请求至少包含一行:GET /a.html HTTP/1.1
+server回复至少包含一行:HTTP/1.1 200 OK
+
+server回复的时候,应答头和应答body在不调用close的情况下可以分两次发
+
+
 以下内容为浏览器请求tcp_socket_server.py,tcp_socket_server.py获取到的数据
 即浏览器请求的数据:
 ########/a.html表示客户端请求的是哪个页面(路径)，请求时至少有这一行
@@ -26,7 +34,6 @@ Accept-Encoding: gzip, deflate, br
 Accept-Language: en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7
 
 
-在浏览器查看服务器回复的数据:f12→NetWork标签→点开具体的链接
 服务器的应答分两部分:1.应答header 2.应答body
 服务器应答头如下(以www.baidu.com为例):
 ########http协议版本以及应答状态,200表示ok;应答header至少有这行

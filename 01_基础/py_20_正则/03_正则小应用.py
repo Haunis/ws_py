@@ -88,7 +88,7 @@ origin_str = """
 #         <p>补充公积金 年终奖 免费咖啡</p>
 #     </dd>
 # """
-ret = re.sub(r"<\w*>|<\w* .*\">|</\w*>|</\w* .*\">","",origin_str) #用空格替代标签
+ret = re.sub(r"<\w*>|<\w*\s.*\">|</\w*>|</\w*\s.*\">","",origin_str) #用空格替代标签
 print(ret)
 
 # ret =  re.findall(r"<\w*>|<\w* .*\">|</\w*>|</\w* .*\">",origin_str)

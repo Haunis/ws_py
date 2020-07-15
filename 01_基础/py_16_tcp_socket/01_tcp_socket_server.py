@@ -28,7 +28,9 @@ def main():
     print("---------end accept-----------")
 
     # 5.收发数据
-    receive_data = new_tcp_client_socket.recv(1024)  # <<<<<阻塞>>>>>；设置接收的最大字节，receive_data是bytes类型;解阻塞：1.收到消息 2.客户端关了
+    # 阻塞:设置接收的最大字节，receive_data是bytes类型;
+    # 何时解阻塞：1.收到消息 2.客户端调用close
+    receive_data = new_tcp_client_socket.recv(1024)
     print(type(receive_data))
     print("receive_data:%s" % receive_data.decode("utf-8"))
     #new_tcp_client_socket.send("数据已收到".encode("utf-8"))
@@ -36,7 +38,7 @@ def main():
     new_tcp_client_socket.send("HTTP/1.1 200 OK\n\n<h1>hhhahh</h1>".encode("utf-8"))
 
     # 6.关闭套接字
-    new_tcp_client_socket.close()  # 不会在为此次链接的客户端服务
+    new_tcp_client_socket.close()  # 不会在为此次链接的客户端服务;发送syn数据包给client,关闭发送通道
     tcp_server_socket.close()  # 关闭监听套接字，不会再监听新的客户端的到来,即accept()会失败
 
 

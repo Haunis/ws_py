@@ -10,8 +10,13 @@ ret = re.search(r"\d+", "abcd9999abcd0000")
 print(ret.group())
 
 print("----------------------2.findall---------------------")
-# 匹配所有，并返回列表
-ret = re.findall(r"\d+", "a=100,b=200,c=300")
+# 匹配所有，并返回列表;带括号()的话，有几个括号，返回的结果list里的每个元组就有几个元素
+html_str = "<body><h1>abcd</h1></body>"
+# ret = re.findall(r"<\w*>", html_str) #无括号;返回单纯list,list里是str
+# ret = re.findall(r"(<\w*>)", html_str)#1括号;返回单纯list,list里是str
+# ret = re.findall(r"<\w*>|(</\w*>)",html_str) ##1括号;返回list，list里只含有()里的内容
+# ret = re.findall(r"(<\w*>)|(</\w*>)",html_str) #2个();list里是元组，元组里2元素
+ret = re.findall(r"((<\w*>)|(</\w*>))",html_str)#3个()，list里是元组，元组里3个元素
 print(ret)
 
 print("----------------------3.sub---------------------")
@@ -20,7 +25,7 @@ print("----------------------3.sub---------------------")
 print("替换为指定字符串....")
 temp_str = "a=1,b=2,c=3"
 print("before：%s" % temp_str)
-ret = re.sub(r"\d+", "999", temp_str) #返回字符串
+ret = re.sub(r"\d+", "999", temp_str)  # 返回字符串
 print("after：%s" % temp_str)  # 原字符串并不会改变
 print("ret：%s" % (ret))
 
@@ -38,7 +43,7 @@ print("after：%s" % temp_str)  # 原字符串并不会改变
 print("ret：%s" % (ret))
 
 print("----------------------4.split---------------------")
-#注意和string的split不同
-#split返回列表
-ret = re.split(r":| ","a:18 b c") #按：或则空格切割
+# 注意和string的split不同
+# split返回列表
+ret = re.split(r":| ", "a:18 b c")  # 按：或则空格切割
 print(ret)
