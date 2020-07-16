@@ -73,6 +73,7 @@ print("test_str4.trip():%s" % (test_str4.strip()))
 print("-----------------------5.拆分和拼接字符串---------------------------")
 origin_str = "静夜思\t 李白 \n 窗前明月光 疑似地上霜 \t 举头望明月 低头思故乡"
 result_list = origin_str.split()  # 如果不传参数的话,默认使用所有空白空白符作为分隔符(\r,\t,\n 空格)
+# result_list = origin_str.splitlines() #按行切割
 print("result_list : %s" % result_list)
 
 result_join = "*".join(result_list)  # 使用*把列表中的元素拼接起来

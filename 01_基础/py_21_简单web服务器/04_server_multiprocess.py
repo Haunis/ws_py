@@ -1,17 +1,22 @@
 """
 根据浏览器的请求回复对应的html文件
+使用多进程或进程池
+
+主进程在创建子进程时,子进程会拷贝父进程的所有资源
+所以new_client_socket主进程和子进程都有一份,但是这两份socket指向同一个文件描述符
+必须这两个socket都调用close之后,才会有tcp的四次挥手,否则浏览器会一直在等待
 """
 import socket
-import gevent
 import os
-from gevent import monkey
 import re
+import multiprocessing
+from multiprocessing import Pool
 
-monkey.patch_all()
 g_count = 0;
 
 
 def handle_msg(client_socket):
+    print("handle_msg pid=", os.getpid())
     global g_count
     g_count += 1
     # while True:
@@ -47,6 +52,7 @@ def handle_msg(client_socket):
 
 
 def main():
+    pool = Pool(3)
     # 1.创建socket
     tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     # 可重用端口;防止server先关闭后,再重启无法重用端口
@@ -65,8 +71,10 @@ def main():
         print("------finish accept---------", client_address)
 
         # 5.通信
-        gevent.joinall([gevent.spawn(handle_msg, new_client_socket)])
+        # pool.apply_async(handle_msg, (new_client_socket,))#使用进程池
 
+        p = multiprocessing.Process(target=handle_msg, args=(new_client_socket,))
+        p.start()
     # 6.关闭
     tcp_server_socket.close()
 

@@ -8,6 +8,8 @@
 Queue:
     创建好队列之后,队列里可以放任意数据
     只能用在同一个程序里的多个进程,而且是同一台电脑
+
+进程间不共享全局变量,线程间共享全局变量
 """
 import multiprocessing
 import time

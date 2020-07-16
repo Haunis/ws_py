@@ -1,17 +1,30 @@
-#-*-coding:utf-8-*-
+# -*-coding:utf-8-*-
 """
 http基于tcp,比udp稳定
 
-在浏览器查看服务器回复的数据:f12→NetWork标签→点开具体的链接
+http就是传输数据所遵循的格式:
+服务器和浏览器都遵循http协议就可以保证不同的浏览器可以访问不同的服务器
+都遵守相同的协议就保证了服务器可以解析浏览器发送请求,浏览器可以解析服务器发来的数据
+
+http协议就是一种解耦,让服务器开发和浏览器开发分开来.
+否则某一个服务器就需要自己开发浏览器来解析服务器发送的数据
+
+http是无状态的,服务器可根据浏览器发来的cookie判断浏览器是否是登陆状态
 
 浏览器请求至少包含一行:GET /a.html HTTP/1.1
 server回复至少包含一行:HTTP/1.1 200 OK
 
+浏览器的请求分header和body,服务器的response也分header和body
+
+如果浏览器请求的是get方式,一般请求中没有body,只有request head;
+如果浏览器提交表单(post请求),就有body;header告诉服务器浏览器的信息,body是用户提交的表单数据
+
+
 server回复的时候,应答头和应答body在不调用close的情况下可以分两次发
 
-
+在浏览器查看服务器回复的数据:f12→NetWork标签→点开具体的链接
 以下内容为浏览器请求tcp_socket_server.py,tcp_socket_server.py获取到的数据
-即浏览器请求的数据:
+---------------即浏览器请求的数据---------------
 ########/a.html表示客户端请求的是哪个页面(路径)，请求时至少有这一行
 GET /a.html HTTP/1.1
 ########服务器ip和端口
@@ -33,8 +46,9 @@ Accept-Encoding: gzip, deflate, br
 ########浏览器可以接收的语言
 Accept-Language: en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7
 
-
-服务器的应答分两部分:1.应答header 2.应答body
+---------------服务器应答的部分---------------
+服务器的应答分两部分:1.应答head 2.应答body
+head:是告诉浏览器的东西,如告诉浏览器保存变量(Set-Cookie),按何种编码方式解析
 服务器应答头如下(以www.baidu.com为例):
 ########http协议版本以及应答状态,200表示ok;应答header至少有这行
 HTTP/1.1 200 OK
@@ -45,6 +59,7 @@ Cache-Control: private
 Connection: keep-alive
 ########服务器返回的数据压缩格式,浏览器自带解压缩
 Content-Encoding: gzip
+########告诉浏览器按何种编码方式解析body,如utf-8
 Content-Type: text/html;charset=utf-8
 Date: Mon, 13 Jul 2020 06:27:16 GMT
 Expires: Mon, 13 Jul 2020 06:27:00 GMT
@@ -59,8 +74,13 @@ Strict-Transport-Security: max-age=172800
 Traceid: 1594621636060723610611833453216304120178
 X-Ua-Compatible: IE=Edge,chrome=1
 
-应答body:是浏览器要展示的内容
-如何区分header和body:header都是连续的,空一行之后都是应答body
+respose body:是浏览器要展示的内容
+<h1>heolo</h1>
+
+如何区分header和body?
+header都是连续的,空一行之后都是应答body
+
+
 
 
 """
