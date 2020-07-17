@@ -2,6 +2,9 @@
 """
 处理一次客户端交互就关闭
 也可以接收浏览器的请求,http协议是基于tcp协议的
+
+socket可以设置为非阻塞的:socket.setblocking(False)
+但是设置成非阻塞后,如果accept(),recv()没成功就会抛出异常
 """
 import socket
 

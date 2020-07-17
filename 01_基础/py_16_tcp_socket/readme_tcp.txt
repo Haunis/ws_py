@@ -26,6 +26,8 @@ tcp建立链接时三次握手:
 3.client收到server的包,将ack解析出来,ack的值是其请求时syn的值+1,说明server已准备好
     同时收到server的syn=1,将syn的值+1,回复ack=2告知server自己已准备好
 
+三次握手的开始是client调用connect,三次握手的成功是服务器调用accept
+
 syn的值等于1只是举例,具体是多少,我也不知道..
 |↘            |
 |   ↘         |

@@ -1,20 +1,17 @@
 """
-根据浏览器的请求回复对应的html文件
+使用多线程回复浏览器
 """
 import socket
-import gevent
 import os
-from gevent import monkey
 import re
+import threading
 
-monkey.patch_all()
 g_count = 0;
 
 
 def handle_msg(client_socket):
     global g_count
     g_count += 1
-    # while True:
     try:
         print("********waiting recv************")
         receive_data = client_socket.recv(1024)  # 阻塞;收到的是bytes类型
@@ -25,24 +22,22 @@ def handle_msg(client_socket):
 
         # 第一行一般是:GET /a.html HTTP/1.1
         # regex = r".*/(.*)\sHTTP/" #任意字符开头,匹配到/,再匹配到 HTTP/结束
-        # regex = r"[^/]+.*\s" #非空字符开始匹配,匹配到有空格结束
-        regex = r"[^/]+/([^\s]*)"  # 非空字符开始匹配,匹配到非空字符结束
+        # regex = r"[^/]+.*\s" #开始匹配所有非"/"字符,匹配到有空格结束
+        regex = r"[^/]+/([^\s]*)"  # 开始匹配所有非"/"字符,,匹配到非空字符结束
         file = re.match(regex, result_str).group(1)  # GET /abc.html
         response = "HTTP/1.1 200 OK\r\n\r\n"  # 应答头和应答体之间空一行;为了兼容windows换行用\r\n表示
         client_socket.send(response.encode("utf-8"))  # 可以先回复头,在socket.close()之前再回复body
         if len(file) == 0 or not os.path.isfile("./html/" + file):
-            print("no this file: ", file)
+            print("no this file:%s" % file)
             body = "<h1>No Such File " + str(g_count) + "</h1>"
             client_socket.send(body.encode("utf-8"))  # 回复body
         else:
-            print("file====>", file)
+            print("file====>%s" % file)
             with open("./html/" + file, "rb") as f:
                 content = f.read()
                 client_socket.send(content)  # 回复body
-
     except Exception as e:
         print("==========handle_msg end============ ")
-        # break
     client_socket.close()
 
 
@@ -65,7 +60,8 @@ def main():
         print("------finish accept---------", client_address)
 
         # 5.通信
-        gevent.joinall([gevent.spawn(handle_msg, new_client_socket)])
+        t = threading.Thread(target=handle_msg, args=(new_client_socket,))
+        t.start()
 
     # 6.关闭
     tcp_server_socket.close()

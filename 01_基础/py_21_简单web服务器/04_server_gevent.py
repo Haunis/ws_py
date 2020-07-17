@@ -1,22 +1,17 @@
 """
 根据浏览器的请求回复对应的html文件
-使用多进程或进程池
-
-主进程在创建子进程时,子进程会拷贝父进程的所有资源
-所以new_client_socket主进程和子进程都有一份,但是这两份socket指向同一个文件描述符
-必须这两个socket都调用close之后,才会有tcp的四次挥手,否则浏览器会一直在等待
 """
 import socket
+import gevent
 import os
+from gevent import monkey
 import re
-import multiprocessing
-from multiprocessing import Pool
 
+monkey.patch_all()
 g_count = 0;
 
 
 def handle_msg(client_socket):
-    print("handle_msg pid=", os.getpid())
     global g_count
     g_count += 1
     # while True:
@@ -30,17 +25,17 @@ def handle_msg(client_socket):
 
         # 第一行一般是:GET /a.html HTTP/1.1
         # regex = r".*/(.*)\sHTTP/" #任意字符开头,匹配到/,再匹配到 HTTP/结束
-        # regex = r"[^/]+.*\s" #非空字符开始匹配,匹配到有空格结束
-        regex = r"[^/]+/([^\s]*)"  # 非空字符开始匹配,匹配到非空字符结束
+        # regex = r"[^/]+.*\s" #开始匹配所有非"/"字符,匹配到有空格结束
+        regex = r"[^/]+/([^\s]*)"  # 开始匹配所有非"/"字符,,匹配到非空字符结束
         file = re.match(regex, result_str).group(1)  # GET /abc.html
         response = "HTTP/1.1 200 OK\r\n\r\n"  # 应答头和应答体之间空一行;为了兼容windows换行用\r\n表示
         client_socket.send(response.encode("utf-8"))  # 可以先回复头,在socket.close()之前再回复body
         if len(file) == 0 or not os.path.isfile("./html/" + file):
-            print("no this file: ", file)
+            print("no this file:%s" % file)
             body = "<h1>No Such File " + str(g_count) + "</h1>"
             client_socket.send(body.encode("utf-8"))  # 回复body
         else:
-            print("file====>", file)
+            print("file====>%s" % file)
             with open("./html/" + file, "rb") as f:
                 content = f.read()
                 client_socket.send(content)  # 回复body
@@ -52,7 +47,6 @@ def handle_msg(client_socket):
 
 
 def main():
-    pool = Pool(3)
     # 1.创建socket
     tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     # 可重用端口;防止server先关闭后,再重启无法重用端口
@@ -71,10 +65,8 @@ def main():
         print("------finish accept---------", client_address)
 
         # 5.通信
-        # pool.apply_async(handle_msg, (new_client_socket,))#使用进程池
+        gevent.joinall([gevent.spawn(handle_msg, new_client_socket)])
 
-        p = multiprocessing.Process(target=handle_msg, args=(new_client_socket,))
-        p.start()
     # 6.关闭
     tcp_server_socket.close()
 

@@ -27,7 +27,7 @@ def handle_msg(client_socket):
     except Exception as e:
         print("end<====================== ")
         # break
-    client_socket.close()
+    # client_socket.close()
 
 
 def main():
