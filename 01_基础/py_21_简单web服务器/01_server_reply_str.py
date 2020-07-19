@@ -1,12 +1,16 @@
 """
+短链接
+虽然服务器发送给浏览器的是HTTP/1.1，但是服务器发送一次后直接调用close()断开套接字，所以是短链接
 最简单的服务器
     使用浏览器访问： 192.168.xx.xx:8888 本机访问的话：127.0.0.1
     http协议基于tcp协议
+
 任何浏览器请求本服务器,均回复:"HTTP/1.1 200 OK\r\n\r\n<h1>hello" + str(g_count) + "</h1>"
 """
 import socket
 import gevent
 from gevent import monkey
+import logging
 
 monkey.patch_all()
 g_count = 0;
@@ -15,19 +19,17 @@ g_count = 0;
 def handle_msg(client_socket):
     global g_count
     g_count += 1
-    # while True:
-    try:
-        print("--------waiting recv-----------")
-        receive_data = client_socket.recv(1024)  # 阻塞
+    print("recv ...")
+    receive_data = client_socket.recv(1024)  # 阻塞
+    if receive_data:
         print("type(receive_data):", type(receive_data))
         print("receive_data:\n%s" % receive_data.decode("utf-8"))
         # 应答头和应答体之间空一行;为了兼容windows换行用\r\n表示
         response = "HTTP/1.1 200 OK\r\n\r\n<h1>hello" + str(g_count) + "</h1>"
         client_socket.send(response.encode("utf-8"))
-    except Exception as e:
-        print("end<====================== ")
-        # break
-    # client_socket.close()
+    else:
+        print("客户端主动调用close")
+    client_socket.close()  # 服务一次后直接断开，短链接
 
 
 def main():
@@ -44,9 +46,9 @@ def main():
 
     # 4.等待客户端链接
     while True:
-        print("------waiting accept--------")
+        logging.warning("accept ...")
         new_client_socket, client_address = tcp_server_socket.accept()  # 阻塞;accept()返回元组，且client_address也是元组
-        print("------finish accept--------", client_address)
+        logging.warning("new client come:%s" % str(client_address))
 
         # 5.通信
         gevent.joinall([gevent.spawn(handle_msg, new_client_socket)])

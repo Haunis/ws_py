@@ -15,34 +15,40 @@
 	6.清空 : dict.clear()
 	7.遍历 : for key dict:
 	8.列表里存字典
+空字典初始化： temp_dict = dict()
 """
 
 dict_lee = {"name": "lee", "age": 18, "gender": True, "height": 178}
-print("dict_lee : %s" % dict_lee)
+print("原始字典 dict_lee : %s" % dict_lee)
 
-print("-----------------1.取值--------------------")
+print("\n-----------------1.取值--------------------")
 print("dict_lee[\"name\"] = %s" % dict_lee["name"])
 
-print("-----------------2.增加/修改-----------------")
+print("\n-----------------2.增加/修改-----------------")
 # 如果字典不存在key就向字典增加元素，存在则修改
+print("添加 country:china, name:lee000")
 dict_lee["country"] = "china"
 dict_lee["name"] = "lee000"
 
-print("dict_lee : %s" % dict_lee)
+print("添加后 dict_lee : %s" % dict_lee)
 
-print("-----------------3.删除--------------------")
+print("\n-----------------3.删除--------------------")
+print("先使用pop删除 name")
 dict_lee.pop("name")
-print("dict_lee : %s" % dict_lee)
+print("删除后 dict_lee : %s" % dict_lee)
+print("再使用 del 删除 age")
+del dict_lee["age"]
+print("删除后 dict_lee : %s" % dict_lee)
 
-print("-----------------4.获取字典键值对数量--------------------")
+print("\n-----------------4.获取字典键值对数量--------------------")
 print("len(dict_lee) : %d" % len(dict_lee))
 
-print("-----------------5.扩展字典--------------------")
+print("\n-----------------5.扩展字典--------------------")
 dict_lee2 = {"name": "lee2", "price": 18}
 dict_lee.update(dict_lee2)
 print("dict_lee : %s" % dict_lee)
 
-print("-----------------6.清空字典--------------------")
+print("\n-----------------6.清空字典--------------------")
 dict_lee2.clear()
 print("dict_lee2 : %s" % dict_lee2)
 
