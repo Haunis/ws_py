@@ -15,7 +15,7 @@ import time
 import re
 import os
 
-fd_event_dict = dict()
+fd_event_dict = dict()  # 初始化空字典用来保存和客户端通信的套接字
 g_count = 0
 
 
@@ -72,27 +72,27 @@ def main():
     tcp_server_socket.setblocking(False)  # 设置非阻塞
 
     tcp_socket_fd = tcp_server_socket.fileno()  # 获取套接字的文件描述符
-    epl.register(tcp_socket_fd, select.EPOLLIN)  # 注册套接字的事件
+    epl.register(tcp_socket_fd, select.EPOLLIN)  # 注册套接字的事件select.EPOLLIN
 
     while True:
         print("start poll...")
-        fd_event_list = epl.poll()  # 阻塞；如果epl注册的事件select.EPOLLIN有新事件就解诸塞
-        for fd, event in fd_event_list:
-            if fd == tcp_server_socket.fileno():  # 监听的tcp_server_socket有事件变动
+        fd_event_list = epl.poll()  # 阻塞；等待新事件到来，如果epl注册的事件select.EPOLLIN有新事件到来就解诸塞
+        for fd, event in fd_event_list:  # fd_event_list是保存元组的列表
+            if fd == tcp_server_socket.fileno():  # 监听的tcp_server_socket有事件变动--只能是有新客户端到来
                 new_client_socket, client_addr = tcp_server_socket.accept()
                 print("new client come:", client_addr)
                 new_client_socket.setblocking(False)
                 fd_event_dict[new_client_socket.fileno()] = new_client_socket  # 向字典存client套接字
                 epl.register(new_client_socket.fileno(), select.EPOLLIN)  # 给客户端服务的套接字也注册
-            elif event == select.EPOLLIN:  # 给客户端服务的套接字有变动
-                client_socket = fd_event_dict[fd]  # 取出套接字
+            elif event == select.EPOLLIN:  # 如果不是监听套接字有新事件，那么就是给客户端服务的套接字有新事件
+                client_socket = fd_event_dict[fd]  # 从字典取出套接字
                 receive = client_socket.recv(1024).decode("utf-8")
-                if receive:
+                if receive:  # 客户端有非None发来
                     send_msg_to_client(client_socket, receive)
                 else:  # 浏览器socket调用close()导致服务端socket收到为空
                     client_socket.close()
                     epl.unregister(fd)  # 取消注册
-                    del client_socket  # 自字典删除
+                    del client_socket  # 从字典删除
 
 
 if __name__ == "__main__":
