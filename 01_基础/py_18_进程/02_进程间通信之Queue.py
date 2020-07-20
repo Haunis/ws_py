@@ -14,16 +14,26 @@ Queue:
 import multiprocessing
 import time
 
+g_list = list()  # 主进程和子进程持有的g_list的id相同,子进程修改g_list内容竟然不影响主进程的g_list
+
 
 def put_msg(queue):
+    print("put_msg id(queue)=%#x, id(g_list)=%#x,id(g_list[0])=%#x,g_list=%s"
+          % (id(queue), id(g_list), id(g_list[0]), str(g_list)))
     temp_list = [11, 22, 33]
     for data in temp_list:
         time.sleep(1)  # 取队列的进程取完一个后队列对空,取队列的进程退出
         queue.put(data)
-    print("put_msg execute: %s" % str(temp_list))
+        print("put_msg execute: ", data)
+    g_list.append(2222)
+    g_list[0] = 2222
+    print("put_msg finish id(queue)=%#x, id(g_list)=%#x,id(g_list[0])=%#x,g_list=%s"
+          % (id(queue), id(g_list), id(g_list[0]), str(g_list)))
 
 
 def get_msg(queue):
+    print("get_msg id(queue)=%#x, id(g_list)=%#x,id(g_list[0])=%#x,g_list=%s"
+          % (id(queue), id(g_list), id(g_list[0]), str(g_list)))
     # temp_list = []
     temp_list = list()
     while True:
@@ -32,16 +42,22 @@ def get_msg(queue):
         temp_list.append(data)
         if queue.empty():
             break
-    print("get_msg : %s" % str(temp_list))
+    print("get_msg finish: %s" % str(temp_list))
 
 
 def main():
     # queue = multiprocessing.Queue(3)
     queue = multiprocessing.Queue()  # 不传参的话默认容量是最大
+    g_list.append(111)
+    print("主进程 id(queue)=%#x, id(g_list)=%#x,id(g_list[0])=%#x,g_list=%s"
+          % (id(queue), id(g_list), id(g_list[0]), str(g_list)))
     p1 = multiprocessing.Process(target=put_msg, args=(queue,))
     p2 = multiprocessing.Process(target=get_msg, args=(queue,))
     p1.start()
     p2.start()
+    time.sleep(10)
+    print("主进程 id(queue)=%#x, id(g_list)=%#x,id(g_list[0])=%#x,g_list=%s"
+          % (id(queue), id(g_list), id(g_list[0]), str(g_list)))
 
 
 if __name__ == "__main__":
