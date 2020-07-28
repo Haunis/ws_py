@@ -12,3 +12,6 @@ arp协议主要内容:根据ip地址找到mac地址
     4.非目标ip收到该包后不处理,目标ip收到后单播回复mac地址
 
 当然mac地址也是可以改变的
+
+linux 查看ARP缓存状态：ip neigh show
+linux 查看ARP缓存表：arp -a
