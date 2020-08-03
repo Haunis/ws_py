@@ -1,3 +1,4 @@
+#! /usr/bin/python3
 """
 使用:
     1.导包: import 包名

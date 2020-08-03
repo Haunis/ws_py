@@ -15,9 +15,11 @@
 	6.清空 : dict.clear()
 	7.遍历 : for key dict:
 	8.列表里存字典
-空字典初始化： temp_dict = dict()
-"""
 
+字典初始化：
+    temp_dict = dict() #空字典
+    temp_dict = dict(name="张三",age="22")
+"""
 dict_lee = {"name": "lee", "age": 18, "gender": True, "height": 178}
 print("原始字典 dict_lee : %s" % dict_lee)
 
