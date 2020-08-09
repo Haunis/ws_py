@@ -5,6 +5,7 @@
 定义：在类的内部定义一个变量即可
 访问：1.类名.属性  2.对象名.属性(不推荐)
 
+每个对象都有__class__属性，该属性就是类对象
 
 属性获取机制：
 	向上查找机制：如果使用对象名访问某个属性，先从实例对象内部查找；
@@ -30,4 +31,7 @@ print("tool1.count = %d" % tool1.count)
 
 tool1.count = 100;  # 实际上是给实例对象的属性赋值,而不是给类属性赋值
 print("Tool.count = %d" % Tool.count)  # 类属性的值还是2
-print("tool1.count = %d" % tool1.count)
+print("tool1.count = %d" % tool1.count)  # 实例对象的属性 100
+
+print("tool1.__class__:", tool1.__class__)  # 每个对象都有__class__属性，该属性就是类对象
+print("tool1.__class__.count:", tool1.__class__.count)  # 2,就是类对象的类属性

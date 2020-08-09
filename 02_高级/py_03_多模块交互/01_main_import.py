@@ -1,7 +1,6 @@
-# -*-coding:utf-8-*-
 """
 import用法:
-from x_module import arg
+from x_module import arg #从x_module加载arg,并且arg指向x_module里的arg的值的内存地址
 from x_module import *
 from x_module import arg1,arg2
 import x_module as X
@@ -21,3 +20,14 @@ import有防止重导入机制,比如导入一个模块3次,只有第一次生�
     1.from imp import reload
     2.reload(x_module)
 """
+import change_module  # 虽然飘红，但正常运行
+import print_module
+
+
+def main():
+    change_module.change_common()
+    print_module.print_data()
+
+
+if __name__ == "__main__":
+    main()

@@ -3,7 +3,7 @@ print()打印对象的引用,会打印出实体对象的内存地址(堆内存)
 id()获取的也是对象的实体内存地址
 print()和id()获取的内存地址是一样的
 
-self: 就是java里的this
+self: 就是java里的this;python中self只是个形参不是关键字，可以写成任何合法的变量包括this
 
 空对象:None ;判断某个对象是否是空对象  instance is None
 
@@ -26,7 +26,7 @@ self: 就是java里的this
 
 
 class Car:
-    def run(self):  # 定义一个run()函数
+    def run(self):  # 定义一个run()函数; self可以写成this,因为self只是个形参
         print("car run, self=", self)  # self指向的对象和调用处变量指向的对象是同一个对象
 
 
