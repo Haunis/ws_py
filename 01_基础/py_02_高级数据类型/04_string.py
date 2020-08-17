@@ -100,3 +100,8 @@ print("-----------------------7.遍历字符串---------------------------")
 str_origin = "abcde"
 for temp in str_origin:
     print(temp)
+
+print("-----------------------8.格式化---------------------------")
+a = "hello :%d" % 10
+print("a=", a)
+print("type(a):", type(a))

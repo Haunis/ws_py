@@ -3,6 +3,10 @@
 使用 += 实际上是调用了列表的extend()方法
 
 创建空列表: empty_list = []或者 empty_list = list()
+
+列表切片可以进行替换和删除动作
+如: list[0:3] = [1,2,3,4,5,6] #替换
+    del list[0:3] #删除列表0,1,2元素
 """
 
 name_list = ["lee0", "lee1", "lee2"]  # 在python3解释器程序中输入name_list.按tab键会有提示可以使用哪些方法

@@ -8,6 +8,7 @@
 伪私有属性和方法:
     python中并没有真正意义上的私有属性和方法
     python对私有属性和方法的处理方式: 在私有属性和方法前面加上"_类名",如"__age"处理为"_Women__age",所以还是可以访问的
+    (这个就叫做名字重整,解释将__attr改成 _类名__attr,所以无法直接访问__attr)
     日常开发中不使用此方式访问私有属性和方法
 
 子类如何访问父类的私有属性和方法:
@@ -49,6 +50,8 @@ print(xiaomei._Women__age)  # 加上"_类名",强制访问私有属性
 
 # xiaomei.__secret()#外界不可访问私有方法
 xiaomei._Women__secret()  # 加上"_类名",强制访问私有方法
+
+print("xiaomei.__dict__:", xiaomei.__dict__)  # 查看所有属性
 
 print("------------------------------------")
 daughter = Daughter("daughter", 18)
