@@ -1,10 +1,12 @@
 #! /usr/bin/python3
 import os
+
 success_msg = """
 
 合并成功 ！！！！！
 
 """
+
 
 def print_list(temp_list):
     for element in temp_list:
@@ -19,13 +21,24 @@ def sort_list(temp_list):
     print("min_len_element:", min_len_element)
     min_len = len(min_len_element)
 
-    #使用选择排序，将元素按角标从小到大排列
+    max_len_element = temp_list[0]  # 设第一个元素长度最短
+    for element in temp_list:
+        if len(element) > len(max_len_element):
+            max_len_element = element
+    print("max_len_element:", max_len_element)
+    max_len = len(max_len_element)
+
+    from_index = 1  # 如果最小长度和最大长度不相等的话，取min_len-1到len的数字作为排序
+    if min_len == max_len:  # 如果最小长度和最大长度相等，则取最后两位作为排序
+        from_index = 2
+
+    # 使用选择排序，将元素按角标从小到大排列
     for i in range(len(temp_list)):
         for j in range(i + 1, len(temp_list)):
-            i_index = int(temp_list[i][min_len - 1:])
-            j_index = int(temp_list[j][min_len - 1:])
+            i_index = int(temp_list[i][min_len - from_index:])
+            j_index = int(temp_list[j][min_len - from_index:])
             if i_index > j_index:
-                temp_list[i], temp_list[j] = temp_list[j], temp_list[i] #交换两个元素
+                temp_list[i], temp_list[j] = temp_list[j], temp_list[i]  # 交换两个元素
 
 
 # 生成bat脚本文件
@@ -34,7 +47,7 @@ def gene_bat(file_list):
     for file_name in file_list:
         final_str += file_name + "+"
 
-    final_str = final_str[0:-1] #去掉最后“+”
+    final_str = final_str[0:-1]  # 去掉最后“+”
     bat_cmd = "copy /b " + final_str + " new.ts"
     print("bat_cmd:\n%s" % bat_cmd)
 
@@ -49,7 +62,7 @@ def gene_video_ts(file_list):
     for file_name in file_list:
         try:
             temp_file = open(file_name, "rb")  # 以二进制格式读文件
-            print("open : %s"%file_name)
+            print("open : %s" % file_name)
             content = temp_file.read()
             file_video.write(content)
             temp_file.close()
@@ -74,7 +87,7 @@ def main():
     print("-----------------after sort--------------------")
     print_list(save_list)
 
-    #gene_bat(save_list)
+    # gene_bat(save_list)
     gene_video_ts(save_list)
     print(success_msg)
 
