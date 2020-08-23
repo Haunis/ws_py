@@ -16,7 +16,7 @@ html_str = "<body><h1>abcd</h1></body>"
 # ret = re.findall(r"(<\w*>)", html_str)#1括号;返回单纯list,list里是str
 # ret = re.findall(r"<\w*>|(</\w*>)",html_str) ##1括号;返回list，list里只含有()里的内容
 # ret = re.findall(r"(<\w*>)|(</\w*>)",html_str) #2个();list里是元组，元组里2元素
-ret = re.findall(r"((<\w*>)|(</\w*>))",html_str)#3个()，list里是元组，元组里3个元素
+ret = re.findall(r"((<\w*>)|(</\w*>))", html_str)  # 3个()，list里是元组，元组里3个元素
 print(ret)
 
 print("----------------------3.sub---------------------")
@@ -38,8 +38,9 @@ def increase(temp_match):
     return str(int(result_str) + 100)
 
 
+temp_str = "a=1,b=2,c=3"
 ret = re.sub(r"\d+", increase, temp_str)
-print("after：%s" % temp_str)  # 原字符串并不会改变
+print("temp_str:%s" % temp_str)  # 原字符串并不会改变
 print("ret：%s" % (ret))
 
 print("----------------------4.split---------------------")

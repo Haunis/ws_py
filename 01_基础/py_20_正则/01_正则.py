@@ -61,6 +61,9 @@ if ret is not None:
 print("------------------1.严格匹配字符串-------------------------")
 ret = re.match(r"abc", "abc")
 print(ret)
+print(ret.group())
+print(ret.group(0))
+# print(ret.group(1)) #error
 
 print("------------------2.匹配数字\d-------------------------")
 ret = re.match(r"abc\d", "abc33")  # abc0~abc9都行,abc99999也行,但只能匹配出abc9--只能匹配出四位
