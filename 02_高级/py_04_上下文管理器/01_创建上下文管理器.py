@@ -38,9 +38,10 @@ def file_open(name, mode):
     f.close()  # with执行完会自动调用该代码
     print("file_open after")
 
-
+print("-------------with File----------------");
 with File("test.txt", "w") as f:  # f就是 __enter__()返回的值
     f.write("hhhh")
 
+print("-------------with file_open----------------");
 with file_open("test.txt", "a") as f:
     f.write("\nfile_open")

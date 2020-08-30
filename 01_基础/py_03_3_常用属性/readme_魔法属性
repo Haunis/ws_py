@@ -1,2 +1,2 @@
 所谓魔法属性就是 调用python中的某个属性或者方法,python解释器会调用某个特殊的方法
-如 d = Demo()会调用__init(),print(d)会调用__str__
+如 d = Demo()会调用__init()__,print(d)会调用__str__

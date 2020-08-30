@@ -19,7 +19,7 @@ class Tool:
     count = 0  # 类属性
 
     @classmethod  # 语法糖，定义类方法
-    def print_count(cls):  # cls指向类对象
+    def print_count(cls):  # cls指向类对象,是形参可以任意指定名称
         print("count = %d" % Tool.count)
         print("count = %d" % cls.count)  # 两种方式均可
 
