@@ -2,7 +2,7 @@
 python和RDBMS(关系型数据库，常见的有mysql,oracle)通信需要借助第三方库
 
 安装pymysql:
-    pip3 install mysql;
+    pip3 install pymysql;
 
 python通过pymsql和mysql交互一般流程：
     1.链接： conn=connect()
