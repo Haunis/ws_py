@@ -6,9 +6,9 @@
 
 迭代器优点:节省内存空间;保存的是生成数据的方式,而不是生成数据的结果
 
-例子:python2.x中 range(10)直接返回一个列表,xrange()返回生成数据的方式(迭代器)
+例子:python2.x中 range(10)直接返回一个列表对象,xrange()返回生成数据的方式(迭代器)
     所以xrange()比range()更节省内存空间
-python3.x已优化range(),range(10)返回的也是一个对象
+python3.x已优化range(),range(10)返回的也是一个迭代器
 
 """
 
