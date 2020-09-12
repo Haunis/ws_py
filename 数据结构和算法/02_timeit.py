@@ -25,7 +25,8 @@ def test1():
 def test2():  # 列表相加
     li = []
     for i in range(10000):
-        li += [i]
+        # li += [i]
+        li = li + [i]  # 和上述+=不同，python对+=进行了优化
     # print("test2:", li)
 
 
