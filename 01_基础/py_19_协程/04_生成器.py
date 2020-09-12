@@ -2,7 +2,7 @@
 列表推导式： temp_list = [x for x in range(10)]
 
 生成器是一个特殊的迭代器
-创建生成器方式1： temp = (x for x in range(10))
+创建生成器方式1： temp = (x for x in range(10)) #注意和列表推导式不同，该处是括号
 创建生成器方式2： 函数中有yield语句就是生成器
 
 如果一个函数中有yield,则这个函数不是函数，是生成器模板
