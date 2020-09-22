@@ -3,15 +3,26 @@
 """
 
 
-class Tool:
+class LinkedList:
 
     def __init__(self):
         self.head = None
         self.tail = None
         self.current = None  # 迭代用
 
-    def add(self, item):
-        node = SingleNode(item)
+    def is_empty(self):
+        return self.head is None
+
+    def length(self):
+        tempNode = self.head
+        count = 0
+        while tempNode is not None:
+            tempNode = tempNode.next
+            count += 1
+        return count
+
+    def add(self, item):  # 添加到尾部
+        node = Node(item)
         if self.head is None:
             self.head = self.tail = self.current = node
         else:
@@ -27,7 +38,7 @@ class Tool:
                 to_delete_node = temp_node
 
         if to_delete_node is None:
-            print("no :", item)
+            print("LinkedList no item :", item)
         else:
             # 找到要删除节点的前一个节点，找到后，将其直接指向要删除节点的后一个节点
             for temp_node in self:
@@ -40,9 +51,11 @@ class Tool:
                 pre_node.next = to_delete_node.next
 
     def contains(self, item):
-        for temp in self:
-            if temp.item == item:
+        temp_node = self.head
+        while temp_node is not None:
+            if temp_node.item == item:
                 return True
+            temp_node = temp_node.next
         return False
 
     def __iter__(self):  # 可迭代对象
@@ -58,7 +71,7 @@ class Tool:
             raise StopIteration
 
 
-class SingleNode(object):
+class Node(object):
     def __init__(self):
         self.next = None
         pass
@@ -72,18 +85,24 @@ class SingleNode(object):
 
 
 def main():
-    tool = Tool()
-    tool.add(1)
-    tool.add(2)
-    tool.add(3)
-    tool.add(4)
-    for temp in tool:
+    ll = LinkedList()
+
+    ll.add(1)
+    ll.add(2)
+    ll.add(3)
+    ll.add(4)
+
+    print("ll.is_empty():", ll.is_empty())
+    print("ll.length():", ll.length())
+    for temp in ll:
         print(temp)
 
-    # print(tool.contains(14))
-    tool.delete(5)
+    contain = 33
+    print("contains(%d) = %s" % (contain, ll.contains(contain)))
+    ll.delete(3)
     print("after delete......")
-    for temp in tool:
+    print("ll.length():", ll.length())
+    for temp in ll:
         print(temp)
 
 
