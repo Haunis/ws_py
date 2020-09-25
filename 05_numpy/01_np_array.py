@@ -5,6 +5,7 @@ np.array(object, dtype,ndmin) #返回numpy.ndarray
     ndim: 接收int,制定生成数组应该具有的最小维数，默认为None
 
 ndarray是一个通用的同构数据容器，即其中的所有元素都需要相同的类型
+课程说的是多维数组,在线性代数角度来说就是矩阵
 属性说明
     ndim 	返回数组的轴的个数
     shape	返回数组的维度,比如(2,3) 就是2*3矩阵的意思
@@ -26,6 +27,7 @@ w1 = np.array(data1)
 print('w1:', w1)  # 和data1输出结果不同,data1输出结构有逗号
 print(type(w1))  # numpy.ndarray
 print("w1.dtype:", w1.dtype)  # int64
+print("w1[0]:", w1[0])  # 直接获取一维数组里的元素
 
 print("\n-------------2.接收列表------------------")
 data3 = [[1, 2, 3, 4], [5, 6, 7, 8]]  # 多维数组
@@ -52,5 +54,12 @@ print('元素个数为：', ret.size)  # 6,即一共多少个是元素
 ret.shape = (3, 2)  # 将矩阵设置为3*2矩阵
 print(ret)
 
+print(">>astype<<")
 ret2 = ret.astype(np.float64)  # 生成一个新类型矩阵;原矩阵ret类型不变
 print(ret2)
+
+print("\n-------------6.ndarray和标量的运算------------------")
+ret = np.array([1, 2, 3, 4, 5, 6, 7, 8])
+print(ret)
+ret = ret * 100
+print(ret)

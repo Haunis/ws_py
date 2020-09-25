@@ -3,7 +3,7 @@
 np.arange([start,] stop, [step,] dtype)
 返回 numpy.ndarray
     start:	起始值，默认从0开始;
-    stop: 	结束值；生成的元素不包括结束值；
+    stop: 	结束值；<<<<<生成的元素不包括结束值>>>>>
     step	步长，可省略，默认步长为1；
     dtype 	设置元素的数据类型，默认使用输入数据的类型。
 """
