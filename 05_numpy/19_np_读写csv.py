@@ -9,3 +9,12 @@ np.loadtxt(fname, dtype=, comments=’#’, delimiter=None, converters=None,
     encoding： bytes，编码格式
 
 """
+import numpy as np
+
+ret = np.loadtxt("iris.csv", dtype=str, comments='#', delimiter=None, converters=None,
+        skiprows=0, usecols=None, unpack=False, ndmin=0, encoding='bytes')
+print(type(ret)) #返回narray
+#print(ret)
+print(ret[0])
+print(ret[1])
+print(ret[2])

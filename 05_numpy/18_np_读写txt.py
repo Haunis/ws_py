@@ -3,7 +3,9 @@
 np.savetxt("../tmp/arr.txt", arr, fmt = "%d", delimiter = ",")
     是将数组以 整型 ，逗号分割写入文件
 
- np.genfromtxt("../tmp/arr.txt", delimiter = ",")是结构化数组和缺失数据。没明白，日后再理解理解
+np.loadtxt("../tmp/arr.txt",delimiter = ",")把文件加载到一个二维数组中；
+
+np.genfromtxt("../tmp/arr.txt", delimiter = ",")是结构化数组和缺失数据。没明白，日后再理解理解
 
 """
 
