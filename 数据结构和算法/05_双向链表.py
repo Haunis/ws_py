@@ -25,12 +25,14 @@ class DoubleLink(object):
             return
         if cur.item == item:
             self.head = self.head.next
-            self.head.pre = None
+            if self.head is not None:
+                self.head.pre = None
             return
         while cur is not None:
             if cur.item == item:
                 cur.pre.next = cur.next
-                cur.next.pre = cur.pre  # 双向删除
+                if cur.next is not None:  # 删除的是尾节点
+                    cur.next.pre = cur.pre  # 双向删除
                 return
             cur = cur.next
         print("删除失败，无此元素 :", item)
