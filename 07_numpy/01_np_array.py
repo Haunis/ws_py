@@ -23,16 +23,16 @@ import numpy as np
 print("-------------1.接收列表------------------")
 data1 = [1, 3, 5, 7]  # 列表
 print("data1:", data1)
-w1 = np.array(data1)
-print('w1:', w1)  # 和data1输出结果不同,data1输出结构有逗号
-print(type(w1))  # numpy.ndarray
-print("w1.dtype:", w1.dtype)  # int64
-print("w1[0]:", w1[0])  # 直接获取一维数组里的元素
+ret = np.array(data1)
+print('ret:', ret)  # 和data1输出结果不同,data1输出结构有逗号
+print(type(ret))  # numpy.ndarray
+print("ret.dtype:", ret.dtype)  # int64
+print("w1[0]:", ret[0])  # 直接获取一维数组里的元素
 
 print("\n-------------2.接收列表------------------")
 data3 = [[1, 2, 3, 4], [5, 6, 7, 8]]  # 多维数组
-w3 = np.array(data3)
-print('w3:', w3)
+ret = np.array(data3)
+print('ret:', ret)
 
 print("\n-------------3.接收元组------------------")
 data2 = (2, 4, 6, 8)  # 元组
@@ -46,7 +46,7 @@ print("w.dtype: ", w.dtype)  # float64
 
 print("\n-------------5.ndarray属性说明------------------")
 ret = np.array([[1, 2, 3], [4, 5, 6]])
-print('ret:', ret)
+print('ret:\n', ret)
 print('秩为：', ret.ndim)  # 2
 print('形状为：', ret.shape)  # (2,3) 即2*3矩阵
 print('元素个数为：', ret.size)  # 6,即一共多少个是元素
