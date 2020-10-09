@@ -1,14 +1,15 @@
 """
+参考:https://blog.csdn.net/yu_1628060739/article/details/102680203
 lexsort(keys, axis=None)
     key:array 或者 元组
-    返回值是按照最后一个传入数据排序的nrray
+    返回值是按照最后一个传入数据排序的narray
 """
 
 import numpy as np
 
 a = np.array([7, 2, 1, 4])
 b = np.array([5, 2, 6, 7])
-c = np.array([5, 2, 4, 6])
+c = np.array([5, 2, 4, 6])  # c是最后传入的,按c进行排序
 ret = np.lexsort((a, b, c))  # narray
 print("ret:", ret)
 print("a[ret]:", a[ret])

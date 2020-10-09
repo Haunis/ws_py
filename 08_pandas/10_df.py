@@ -6,7 +6,8 @@
 
 pd.DataFrame(data=None, index=None, columns=None, dtype=None, copy=False)
     data: 数据,可以是字典,字典的key作为字段名(行),value作为记录(列的值)
-    columns: 列的名字,相当于数据库表的字段;
+    columns: 列的名字,相当于数据库表的字段;数据可以和data的key不一致,以columns为准,data没有对应的则为NaN
+    index: 长度必须和字典data长度一致,否则报错
 
 """
 import pandas as pd
