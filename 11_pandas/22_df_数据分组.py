@@ -29,7 +29,6 @@ print("grouped.mean():")
 print(grouped.mean(), end="\n\n")  # grouped.mean()得到的是Series
 
 print("grouped.sum():")
-print("grouped.sum():")
 print(grouped.sum(), end="\n\n")
 
 print("\n------------2.1 DataFrame.groupby()按列分组-----------------")

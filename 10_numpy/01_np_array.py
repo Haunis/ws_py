@@ -21,9 +21,9 @@ ndarray是一个通用的同构数据容器，即其中的所有元素都需要�
 import numpy as np
 
 print("-------------1.接收列表------------------")
-data1 = [1, 3, 5, 7]  # 列表
-print("data1:", data1)
-ret = np.array(data1)
+li = [1, 3, 5, 7]  # 列表
+print("li:", li)
+ret = np.array(li)
 print('ret:', ret)  # 和data1输出结果不同,data1输出结构有逗号
 print(type(ret))  # numpy.ndarray
 print("ret.dtype:", ret.dtype)  # int64
