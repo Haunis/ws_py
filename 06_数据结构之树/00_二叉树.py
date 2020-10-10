@@ -7,8 +7,16 @@
     5.对于完全二叉树,若从上至下,从左至右进行编号,则编号为i的节点,其左孩子的编号必为2i,
         右孩子的编号必为2i+1;其双亲编号必为i/2(i=1时为根,除外)
 
-广度优先遍历:
-    向完全二叉树中添加元素,按从上往下从左网友的顺序添加,遍历时也采用该顺序
+广度优先遍历:  横向遍历
+    按从上往下从左往右的顺序
+深度优先遍历： 纵向遍历
+    对一个根节点和左右两个子节点来说，根据 root,l_child,r_child顺序分为三种遍历方式
+    先序、中序、后序都是强调根在这三者的顺序
+    1.先序遍历：root -> l_child -> r_child   根优先
+    2.中序遍历：l_child -> root -> r_child   根在中间
+    3.后序遍历：l_child -> r_child ->root    根在最后
+
+
 """
 
 
@@ -41,7 +49,7 @@ class Tree(object):
             self.root = node
             return
         li = [self.root]
-        while li is not None:  # 只要队列不为空,就一直往后找
+        while len(li) > 0:  # 只要队列不为空,就一直往后找
             cur_node = li.pop(0)
             if cur_node.l_child is None:
                 cur_node.l_child = node
@@ -85,11 +93,23 @@ class Tree(object):
             print(node.item)
         print("size:", len(li))
 
+    def breadth_traverse2(self):  # 广度有限第二种遍历方式，只打印值
+        if self.root is None:
+            print("empty")
+        li = [self.root]
+        while len(li) > 0:
+            head = li.pop(0)
+            print(head.item)
+            if head.l_child is not None:
+                li.append(head.l_child)
+            if head.r_child is not None:
+                li.append(head.r_child)
+
 
 def main():
     tree = Tree()
     for i in range(1, 100):
-        tree.add2(i)
+        tree.add(i)
     tree.breadth_traverse()
 
 
