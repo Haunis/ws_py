@@ -25,11 +25,11 @@ df = pd.DataFrame(dict_temp)  # DataFrame对象
 print(df)
 
 print("\n---------1.选取1列数据---------------")
-w1 = df['name']
+w1 = df['name']  # 一列是Series
 print(w1)
 
 print("\n---------2.选取2列数据---------------")
-w2 = df[['name', 'year']]
+w2 = df[['name', 'year']]  # 多列就是DataFrame
 print(w2)
 
 print("\n---------3.选取前两行---------------")

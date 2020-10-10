@@ -16,6 +16,9 @@
     2.中序遍历：l_child -> root -> r_child   根在中间
     3.后序遍历：l_child -> r_child ->root    根在最后
 
+可以由先序遍历结果,中序遍历结果确定一个树
+也可以有后序遍历结果,中序遍历结果确定一个数
+但不能由先序遍历结果,后序遍历结果确定一个数
 
 """
 
@@ -84,16 +87,17 @@ class Tree(object):
         index = 0
         head = li[index]
         while head.l_child is not None or head.r_child is not None:
-            li.append(head.l_child)
+            if head.l_child is not None:  # 这个条件可以不用
+                li.append(head.l_child)
             if head.r_child is not None:
                 li.append(head.r_child)
             index += 1
             head = li[index]
         for node in li:
-            print(node.item)
-        print("size:", len(li))
+            print(node.item, end="\t")
+        print("[size=%d]" % len(li))
 
-    def breadth_traverse2(self):  # 广度有限第二种遍历方式，只打印值
+    def breadth_traverse2(self):  # 广度有限第二种遍历方式
         if self.root is None:
             print("empty")
         li = [self.root]
@@ -105,12 +109,59 @@ class Tree(object):
             if head.r_child is not None:
                 li.append(head.r_child)
 
+    # 先序遍历: root -> l_child -> r_child
+    def preorder_traverse(self, node):
+        # if node.l_child is not None or node.r_child is not None:  # 是根节点
+        #     print(node.item, end="\t")  # 是根节点,先打印出来
+        #     if node.l_child is not None:
+        #         self.preorder_traverse(node.l_child)
+        #     if node.r_child is not None:
+        #         self.preorder_traverse(node.r_child)
+        # else:  # 叶子节点
+        #     print(node.item, end="\t")
+        if node is None:
+            return
+        print(node.item, end="\t")
+        self.preorder_traverse(node.l_child)
+        self.preorder_traverse(node.r_child)
+
+    # 中序遍历: l_child -> root -> r_child
+    # 先把左侧节点都打印找到,再打印自己,最后再寻找打印右侧节点
+    def inorder_traverse(self, node):
+        # if node.l_child is not None:  # 有左节点
+        #     self.inorder_traverse(node.l_child)
+        #     print(node.item, end="\t")
+        #     if node.r_child is not None:
+        #         self.inorder_traverse(node.r_child)
+        # else:
+        #     print(node.item, end="\t")
+        if node is None:
+            return
+        self.inorder_traverse(node.l_child)
+        print(node.item, end="\t")
+        self.inorder_traverse(node.r_child)
+
+    # 后序遍历: l_child -> r_child ->root
+    def postorder_traverse(self, node):
+        if node is None:
+            return
+        self.postorder_traverse(node.l_child)
+        self.postorder_traverse(node.r_child)
+        print(node.item, end="\t")
+
 
 def main():
     tree = Tree()
-    for i in range(1, 100):
+    for i in range(0, 10):
         tree.add(i)
+    print("广度优先遍历:")
     tree.breadth_traverse()
+    print("先序遍历:")
+    tree.preorder_traverse(tree.root)
+    print("\n中序遍历:")
+    tree.inorder_traverse(tree.root)
+    print("\n后序遍历:")
+    tree.postorder_traverse(tree.root)
 
 
 if __name__ == "__main__":
