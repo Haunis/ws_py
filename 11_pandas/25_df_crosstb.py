@@ -1,6 +1,7 @@
 """
 
 交叉表是一种特殊的透视表，主要用于计算分组频率。
+和privot_table不同，crosstab计算是多少次
 
     crosstab(index, columns, values=None, rownames=None,
         colnames=None, aggfunc=None, margins=False, dropna=True, normalize=False)
@@ -30,5 +31,6 @@ ret_df = pd.crosstab(data.k1, data.k2)  # DataFrame
 print(ret_df)
 
 print("\n-----------2.margins为True----------")
+# 表示汇总
 ret = pd.crosstab(data.k1, data.k2, margins=True)
 print(ret)
