@@ -35,15 +35,15 @@ df = pd.DataFrame({'key1': ['a', 'a', 'b', 'b', 'a'],
 print(df, end="\n\n")
 
 print("\n------------1.Series.groupby(series)-----------------")
-grouped = df['data1'].groupby(df['key1'])  # grouped是SeriesGroupBy; df['data1']得到的是Series
-print("grouped.size():")
-print(grouped.size(), end="\n\n")  # grouped.size()得到的是Series
+se_groupby = df['data1'].groupby(df['key1'])  # grouped是SeriesGroupBy; df['data1']得到的是Series
+print("se_groupby.size():")
+print(se_groupby.size(), end="\n\n")  # grouped.size()得到的是Series
 
-print("grouped.mean():")
-print(grouped.mean(), end="\n\n")  # grouped.mean()得到的是Series
+print("se_groupby.mean():")
+print(se_groupby.mean(), end="\n\n")  # grouped.mean()得到的是Series
 
-print("grouped.sum():")
-print(grouped.sum(), end="\n\n")
+print("se_groupby.sum():")
+print(se_groupby.sum(), end="\n\n")
 
 print("\n------------2.1 DataFrame.groupby(key2)按列分组-----------------")
 # DataFrame数据的列索引名可以作为分组键，但需要注意的是用于分组的对象必须是DataFrame数据本身，否则搜索不到索引名称会报错。
