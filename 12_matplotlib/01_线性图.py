@@ -1,5 +1,5 @@
 """
-
+默认是线形图
 """
 import pandas as pd
 import numpy as np
