@@ -6,6 +6,7 @@ concat连接series:
     直接将series的index和values 分别append
 
 concat连接DataFrame:
+    axis=0时:
     columns相同的，则index直接append
     columns不同的，则column横向append,不存在的元素置为NaN
 
@@ -31,12 +32,12 @@ print(data2, end="\n\n")
 print(data, end="\n\n")
 
 print("\n-------------3.指定索引顺序--------------\n")
-s1 = pd.Series([0, 1], index=['a', 'b'])
-s2 = pd.Series([2, 3, 4], index=['a', 'd', 'e'])
-s3 = pd.Series([5, 6], index=['f', 'g'])
-s4 = pd.concat([s1 * 5, s3], sort=False)
-df5 = pd.concat([s1, s4], axis=1, sort=False)  # 将Series和DataFrame 连接
-df6 = pd.concat([s1, s4], axis=1, join='inner', sort=False)
-print(s4, end="\n\n")
+# sort --最新pandas的已经舍弃,当join='inner'时无效
+s1 = pd.Series([1, 11], index=['a', 'aa'])
+s2 = pd.Series([2, 22], index=['b', 'bb'])
+s3 = pd.concat([s1 * 5, s2], sort=True)
+df4 = pd.concat([s1, s3], axis=1, sort=False)  # 将Series和DataFrame 连接
+df5 = pd.concat([s1, s3], axis=1, join='inner', sort=False)
+print(s3, end="\n\n")
+print(df4, end="\n\n")
 print(df5, end="\n\n")
-print(df6, end="\n\n")

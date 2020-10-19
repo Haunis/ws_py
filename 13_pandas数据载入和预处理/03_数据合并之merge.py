@@ -25,6 +25,8 @@ pd.merge(left, right, how='inner', on=None, left_on=None, right_on=None,
 与SQL中的 join 用法类似,但还是有区别的：
     inner join: sql是将两个表(如a 11行，b 12行)合并成一个11*12行的大表
                 而pd.merge是取key的交集
+
+merge后的表index默认从0开始
 """
 import pandas as pd
 import numpy as np

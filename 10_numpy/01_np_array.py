@@ -19,6 +19,7 @@ ndarray是一个通用的同构数据容器，即其中的所有元素都需要�
 """
 
 import numpy as np
+import pandas as pd
 
 print("-------------1.接收列表------------------")
 li = [1, 3, 5, 7]  # 列表
@@ -63,3 +64,10 @@ ret = np.array([1, 2, 3, 4, 5, 6, 7, 8])
 print(ret)
 ret = ret * 100
 print(ret)
+
+print("\n-------------7.布尔选择------------------")
+narray = np.array([1, 2, 3, 4])
+ret_narray = narray > narray.mean()
+se = pd.Series(ret_narray)
+print(narray[ret_narray])
+print(narray[se])  # 效果一样
