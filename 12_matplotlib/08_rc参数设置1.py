@@ -9,7 +9,17 @@ pyplot使用rc配置文件来自定义图形的各种默认属性，被称为rc�
     1.print(plt_lib.matplotlib_fname())  #显示当前用户的配置文件目录
     2.找到当前用户的配置文件目录，修改matplotlibrc文件，即可修改配置参数。
     
-本demo采取的全局参数配置,但由于无SimHei字体文件所以会配置失败
+本demo采取的全局参数配置
+
+配置中文参考:https://blog.csdn.net/neutionwei/article/details/108311811
+1.Matplotlib存放ttf文件的路径
+    import matplotlib
+    print(matplotlib.matplotlib_fname())
+    ~/.local/lib/python3.5/site-packages/matplotlib/mpl-data/matplotlibrc
+2.将下载的字体文件复制到Matplotlib放ttf文件的路径
+    ~/.local/lib/python3.5/site-packages/matplotlib/mpl-data/fonts/ttf
+3.删除缓存
+    rm ~/.cache/matplotlib/fontlist-v300.json
 """
 import numpy as np
 import matplotlib.pyplot as plt

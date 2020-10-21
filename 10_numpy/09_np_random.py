@@ -22,3 +22,8 @@ print("\n------------4.normal------------------")
 ret = np.random.normal(size=(3, 3))
 print(type(ret))
 print(ret)
+
+print("\n------------5.uniform------------------")
+na = np.random.uniform(0, 20, 5)  # ndarray;从一个均匀分布中随机采样[0,20),采取5个
+print(type(na))
+print(na)
