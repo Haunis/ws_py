@@ -23,6 +23,7 @@ Series相加:
 
 """
 import pandas as pd
+import numpy as np
 
 print("-------------1.使用列表创建----------------")
 se = pd.Series([1, -2, 3, -4])  # 仅有一个数组构成; index默认从0开始
@@ -59,7 +60,11 @@ print(se2)
 print("se1+se2:")
 print(se1 + se2)
 
-print("\n-----------4.索引修改-------------------")
+print("\n-----------4.使用ndarray创建-------------------")
+se = pd.Series(np.arange(10))
+print(se)
+
+print("\n-----------5.索引修改-------------------")
 se = pd.Series([4, 7, -3, 2])  # se默认索引0 1 2 3...
 se.index = ['a', 'b', 'c', 'd']  # 修改其索引
 print(se)
