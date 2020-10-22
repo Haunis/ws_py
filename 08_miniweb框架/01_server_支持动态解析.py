@@ -9,6 +9,7 @@ import re
 import multiprocessing
 from multiprocessing import Pool
 import time
+import mini_frame
 
 
 class WSGIServer(object):
@@ -69,7 +70,7 @@ class WSGIServer(object):
         res_header = "HTTP/1.1 200 OK\r\n\r\n"  # 应答头和应答体之间空一行;为了兼容windows换行用\r\n表示
         client_socket.send(res_header.encode("utf-8"))  # 可以先回复头,在socket.close()之前再回复body
 
-        body = "time:%s" % time.ctime()
+        body = mini_frame.main(file)
         client_socket.send(body.encode("utf-8"))
 
     def run(self):
