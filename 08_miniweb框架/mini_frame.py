@@ -1,3 +1,6 @@
+"""
+该文件作为应用程序框架
+"""
 import time
 
 
@@ -13,7 +16,7 @@ def profile():
     return "profile---------time:%s" % time.ctime()
 
 
-def main(file_name):
+def application(file_name):
     if file_name == "login.py":
         return login()
     elif file_name == "register.py":

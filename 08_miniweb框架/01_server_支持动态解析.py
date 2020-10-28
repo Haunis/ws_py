@@ -2,6 +2,9 @@
 本demo以多进程服务器为基础进行修改,在其基础上增加了动态解析的功能
 
 所谓的支持动态解析就是client请求同一个特殊文件,如xx.py,server要实时更新内容进行回复
+
+该文件作为web服务器
+
 """
 import socket
 import os
@@ -70,7 +73,7 @@ class WSGIServer(object):
         res_header = "HTTP/1.1 200 OK\r\n\r\n"  # 应答头和应答体之间空一行;为了兼容windows换行用\r\n表示
         client_socket.send(res_header.encode("utf-8"))  # 可以先回复头,在socket.close()之前再回复body
 
-        body = mini_frame.main(file)
+        body = mini_frame.application(file)
         client_socket.send(body.encode("utf-8"))
 
     def run(self):
