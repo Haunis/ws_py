@@ -1,4 +1,6 @@
 """
+定义一个函数时，函数名就是一个变量，该变量指向一块区域，并可以赋值给其他变量
+
 函数在使用变量时查找规则:
     如果在函数内部有定义过就直接使用,未定义就到外部查找全局变量
 
@@ -14,7 +16,7 @@
 
 
 def print_hello():
-    print("hello 函数")
+    print("print_hello called")
 
 
 def sum(x, y):
@@ -26,12 +28,16 @@ def sum(x, y):
     return z
 
 
-print("----------print_hello()-----------------")
+print("----------1.print_hello()-----------------")
 print_hello()
 
-print("----------sum()-----------------")
+print("----------2.sum()-----------------")
 a = 10
 b = 20
 result = sum(a, b)  # 传入的是实参;使用变量接收函数执行的结果
 
 print("%d + %d = %d" % (a, b, result))
+
+print("----------3.用变量接受函数变量-----------------")
+test = print_hello
+test()

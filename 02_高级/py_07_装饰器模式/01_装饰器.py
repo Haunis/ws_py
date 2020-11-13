@@ -14,14 +14,14 @@ def get_decorator(func):
 print("-------------1.@方式实现-------------")
 
 
-@get_decorator
+@get_decorator  # 语法糖； 等价于 test = get_decorator(test)
 def test():
     print("test called")
 
 
 test()
 
-print("-------------2.手动调用闭包方式实现-------------")
+print("\n-------------2.手动调用闭包方式实现-------------")
 
 
 def test():
