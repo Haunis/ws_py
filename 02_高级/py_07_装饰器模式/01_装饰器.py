@@ -1,5 +1,6 @@
 """
 在原来函数内部代码不修改的情况下,增加新功能
+@xxx_fun,会调用xxx_fun函数进行装饰
 """
 
 
@@ -14,7 +15,7 @@ def get_decorator(func):
 print("-------------1.@方式实现-------------")
 
 
-@get_decorator  # 语法糖； 等价于 test = get_decorator(test)
+@get_decorator  # 语法糖； 等价于 test = get_decorator(test);会调用get_decorator()
 def test():
     print("test called")
 
