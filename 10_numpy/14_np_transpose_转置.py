@@ -8,9 +8,9 @@
 import numpy as np
 
 ret = np.arange(6).reshape(3, 2)
-print(ret)
+print("origin data:\n",ret)
 
 ret2 = np.transpose(ret, (1, 0))
 # ret2 = ret.transpose((1, 0))
 # ret2 = ret.T
-print('转置矩阵：\n', ret2)
+print('\n转置矩阵：\n', ret2)
