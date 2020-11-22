@@ -17,11 +17,17 @@ __str__()
 __class__
     每个实例对象里均有__class__属性，该属性指向类对象
 
+__init()__: 构造，不能被重载；使用类名创建时会被调用
+    要想使用类似重载的效果，可以指定缺省参数
+
 """
 
 
 class Car:
-    def __init__(self, color):  # 创建对象时会自动调用__init()__
+    def __init__(self):
+        self.__init__("null")
+
+    def __init__(self, color):  # 创建对象时会自动调用__init()__； __init__()被定义了两次，以这次定义为准
         self.color = color  # self.color是实例属性
 
     def __del__(self):  # 对象销毁时调用
@@ -31,6 +37,11 @@ class Car:
         return "__str__ executed: %s" % self.color
 
 
+print("-----------------1.无参构造-----------------")
+car = Car()  # error;因为__init__(self)被__init(self,color)覆盖
+print(car.color)
+
+print("\n-----------------2.有参构造------------------")
 # car是全局变量,系统执行完程序后该变量才会被回收
 car = Car("red")
 print("car.color=%s" % car.color)

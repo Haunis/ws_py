@@ -18,21 +18,27 @@ class MusicPlayer:
             cls.instance = super().__new__(cls)
         return cls.instance
 
-    def __new__(cls, *args, **kwargs):
+    def __new__(cls, *args, **kwargs):  # 可以称之为类方法
+        print("__new__,cls=", cls)
         if cls.instance is None:
             cls.instance = super().__new__(cls)
         return cls.instance
 
     def __init__(self):
+        print("__init__,self=", self)
         if not MusicPlayer.init_flag:
             MusicPlayer.init_flag = True
             print("init called")
 
 
+print("--------------1.get_instance------------")
 music_instance = MusicPlayer.get_instance()
-music_player1 = MusicPlayer()
-music_player2 = MusicPlayer()
-
 print(music_instance)
+
+print("\n--------------2.MusicPlayer------------")
+music_player1 = MusicPlayer()
 print(music_player1)
+
+print("\n--------------3.MusicPlayer------------")
+music_player2 = MusicPlayer()
 print(music_player2)
