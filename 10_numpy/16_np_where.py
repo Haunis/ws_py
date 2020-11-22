@@ -13,7 +13,10 @@ condition = np.array([[True, False], [True, True]])
 # 条件为[[True,False], [True,False]]，分别对应最后输出结果的四个值，运算时第一个值从[1,9]中选，
 # 因为条件为True，所以是选1。第二个值从[2,8]中选，因为条件为False，所以选8，后面以此类推。
 # ret = np.where([[True, False], [True, True]], [[1, 2], [3, 4]], [[9, 8], [7, 6]]) #ok
-ret = np.where(condition, [[1, 2], [3, 4]], [[9, 8], [7, 6]])
+# ret = np.where(condition, [[1, 2], [3, 4]], [[9, 8], [7, 6]])
+value1 = np.array([[1, 2], [3, 4]])
+value2 = np.array([[9, 8], [7, 6]])
+ret = np.where(condition, value1, value2) #满足条件从value1选，否则从value2选
 print(ret)
 
 print("\n----------------2.只有condition----------------")
