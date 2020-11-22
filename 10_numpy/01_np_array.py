@@ -33,7 +33,7 @@ print("w1[0]:", ret[0])  # 直接获取一维数组里的元素
 print("\n-------------2.接收列表------------------")
 data3 = [[1, 2, 3, 4], [5, 6, 7, 8]]  # 多维数组
 ret = np.array(data3)
-print('ret:', ret)
+print('ret:\n', ret)
 
 print("\n-------------3.接收元组------------------")
 data2 = (2, 4, 6, 8)  # 元组
@@ -69,5 +69,6 @@ print("\n-------------7.布尔选择------------------")
 narray = np.array([1, 2, 3, 4])
 ret_narray = narray > narray.mean()
 se = pd.Series(ret_narray)
+print("ret_narray:",ret_narray) #[False False  True  True] 
 print(narray[ret_narray])
 print(narray[se])  # 效果一样
