@@ -33,16 +33,16 @@ if __name__ == "__main__":
 
 
 def i(msg):
-    logging.info("\033[1;36m %s \033[0m" % msg)
+    logging.info("\033[1;36m%s\033[0m" % msg)
 
 
 def d(msg):
-    logging.debug("\033[1;34m %s \033[0m" % msg)
+    logging.debug("\033[1;34m%s\033[0m" % msg)
 
 
 def w(msg):
-    logging.warning("\033[1;32m %s \033[0m" % msg)
+    logging.warning("\033[1;32m%s\033[0m" % msg)
 
 
 def e(msg):
-    logging.error("\033[1;31m %s \033[0m" % msg)
+    logging.error("\033[1;31m%s\033[0m" % msg)

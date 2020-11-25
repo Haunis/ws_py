@@ -1,6 +1,12 @@
 """
 在原来函数内部代码不修改的情况下,增加新功能
-@xxx_fun,会调用xxx_fun函数进行装饰
+
+格式:
+@xxx_fun
+def test():
+
+@xxx_fun会调用xxx_fun函数进行装饰;
+不是调用test()才开始装饰，写了@xxx_fun就会调用xxx__fun()进行装饰
 """
 
 
