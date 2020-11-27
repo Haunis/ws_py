@@ -7,4 +7,16 @@
 常见的有名服务器:apache,nginx
 
 
+静态url: www.baidu.com/abc.html
+    每个网页都有真实的物理路径,真实存在服务器里
+    优点:对SEO(搜索引擎优化)支持比较好
+    缺点:修改文件内容麻烦
+
+动态url: www.baidu.com/abc.asp?id=5  或者php?id=5
+    (jsp:java写的; asp:.net写的; php:php写的)
+    每个url只是个逻辑地址,并不真实存在服务器硬盘里
+    优点:网站开发方便,修改方便,但对SEO支持一般
+
+伪静态:wwww.baidu.com/course/74.html 如course表示变量名,74标志变量值
+    通过伪静态规则把url伪装成静态网址.也是逻辑地址,不存在物理地址
     
