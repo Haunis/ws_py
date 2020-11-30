@@ -10,6 +10,9 @@ python通过pymsql和mysql交互一般流程：
     3.进行操作: cur.exec(sql语句)
     4.关闭链接: conn.close()
     5.关闭cursor: cur.close()
+
+在python中操作mysql,是默认开启事务的
+如果只是查数据,不需要commit;如果是增删改,需要commit提交
 """
 import pymysql as sql
 
