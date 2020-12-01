@@ -11,10 +11,9 @@ np.arange([start,] stop, [step,] dtype)
 import numpy as np
 
 print("--------------1.只传一个参数-------------------")
-ret = np.arange(10)
-print("type(ret):", type(ret))  # numpy.ndarray
-print(ret)  # [0 1 2 3 4 5 6 7 8 9]
+narray = np.arange(10)  # 返回numpy.ndarray
+print(narray)  # [0 1 2 3 4 5 6 7 8 9]
 
 print("\n--------------2.传start,stop,step-------------------")
-ret = np.arange(0, 10, 1)  # 包左不包右
-print(ret)  # [0 1 2 3 4 5 6 7 8 9]
+narray = np.arange(0, 10, 1)  # 包左不包右
+print(narray)  # [0 1 2 3 4 5 6 7 8 9]

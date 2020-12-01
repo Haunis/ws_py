@@ -7,8 +7,8 @@ np.diag(v, k=0)
 """
 import numpy as np
 
-ret = np.diag([1, 2, 3, 4, 5], k=0)
-print(ret)
+narray = np.diag([1, 2, 3, 4, 5], k=0)  # numpy.ndarray
+print(narray)
 """
 [[1 0 0 0 0]
  [0 2 0 0 0]
@@ -16,4 +16,3 @@ print(ret)
  [0 0 0 4 0]
  [0 0 0 0 5]]
 """
-print("type(ret):", type(ret))  # numpy.ndarray

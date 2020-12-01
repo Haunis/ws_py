@@ -4,17 +4,14 @@ np.array(object, dtype,ndmin) #返回numpy.ndarray
     dtype: 元素元素类型,未指定则选择保存所需的最小类型,默认None
     ndim: 接收int,制定生成数组应该具有的最小维数，默认为None
 
-ndarray是一个通用的同构数据容器，即其中的所有元素都需要相同的类型
-课程说的是多维数组,在线性代数角度来说就是矩阵
+ndarray:多维数组;是一个通用的同构数据容器，即其中的所有元素都需要相同的类型
+
 属性说明
     ndim 	返回数组的轴的个数
     shape	返回数组的维度,比如(2,3) 就是2*3矩阵的意思
     size	返回数组元素个数
     dtype	返回数据类型
     itemsize	返回数组中每个元素的字节大小
-
-
-
 
 """
 
@@ -67,8 +64,9 @@ print(ret)
 
 print("\n-------------7.布尔选择------------------")
 narray = np.array([1, 2, 3, 4])
-ret_narray = narray > narray.mean()
-se = pd.Series(ret_narray)
-print("ret_narray:",ret_narray) #[False False  True  True] 
-print(narray[ret_narray])
-print(narray[se])  # 效果一样
+bool_narray = narray > narray.mean()
+se = pd.Series(bool_narray)
+
+print("bool_narray:", bool_narray)  # [False False  True  True]
+print(narray[bool_narray])  # [3 4]
+print(narray[se])  # [3 4]和上述结果一样

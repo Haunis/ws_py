@@ -8,19 +8,27 @@ reshape()可以将数组设置成多个纬度,现不考虑那么多,只考虑2�
 
 import numpy as np
 
-nda = np.arange(8)
-print("origin data:", nda)
+narray = np.arange(8)
+print("origin data:", narray)
 
 print("\n---------------1.narray.reshape()------------------")
-nda2 = nda.reshape(2, 4)  # 生成2*4新矩阵,原矩阵ret不变
-print("nda2:\n", nda2)
+narray1 = narray.reshape(2, 4)  # 生成2*4新矩阵,原矩阵ret不变
+print("narray1:\n", narray1)
 
 print("\n---------------2.np.reshape()------------------")
-nda2 = np.reshape(nda, (4, 2))  # 生成4*2矩阵,原矩阵ret不变
-nda2 = np.reshape(nda, (4, -1))  # 自动推断矩阵的列数
-print("nda2:\n", nda2)
+# narray2 = np.reshape(narray, (4, 2))  # 生成4*2矩阵,原矩阵ret不变
+narray2 = np.reshape(narray, (4, -1))  # 自动推断矩阵的列数
+print("narray2:\n", narray2)
 
-print("---------")
+print("\n--------------3.np.reshape()多维--------------")
 # ndarray中有2个ndarray-a,这2个ndnarray-a中各有2个子ndnarray-b,ndnarray-b,含有4个元素
-arr = np.arange(16).reshape((2, 2, 4))
-print(arr)
+narray3 = np.reshape(np.arange(16), (2, 2, 4))
+print(narray3)
+"""
+[[[ 0  1  2  3]
+  [ 4  5  6  7]]
+
+ [[ 8  9 10 11]
+  [12 13 14 15]]]
+"""
+print("narray3[1][0][3]:", narray3[1][0][3])  # 11

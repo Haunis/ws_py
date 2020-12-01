@@ -11,6 +11,6 @@ np.arange([start,] stop, [step,] dtype)用的比较多些
 """
 import numpy as np
 
-ret = np.linspace(0, 9, 10,dtype="int64")  # 从0到9生成10个,包含start也包含stop
-print(ret) #[0 1 2 3 4 5 6 7 8 9]
-print("type(ret):", type(ret))  # numpy.ndarray
+narray = np.linspace(0, 9, 10, dtype="int64")  # 返回numpy.ndarray;从0到9生成10个,包含start也包含stop；
+print(narray)  # [0 1 2 3 4 5 6 7 8 9]
+

@@ -5,7 +5,7 @@ ufunc:
 
 常用的ufunc函数运算有四则运算、比较运算和逻辑运算。
     四则运算：
-        +,0,*,/,**(幂运算)。数组间的四则运算表示对每个数组中的元素分别进行四则运算，所以形状必须相同。
+        +,-,*,/,**(幂运算)。数组间的四则运算表示对每个数组中的元素分别进行四则运算，所以形状必须相同。
     比较运算：
         >、<、==、>=、<=、!=。比较运算返回的结果是一个布尔数组，每个元素为每个数组对应元素的比较结果。
 
@@ -35,7 +35,7 @@ x = np.array([1, 3, 6])
 y = np.array([2, 3, 4])
 print("x:", x)
 print("y:", y)
-print('比较结果(<)：', x < y)  # 返回bool类型的narray
+print('比较结果(<)：', x < y)  # [ True False False];ndarray
 print('比较结果(>)：', x > y)
 print('比较结果(==)：', x == y)
 print('比较结果(>=)：', x >= y)
@@ -44,29 +44,23 @@ print('比较结果(!=)：', x != y)
 print("\n-------------3.逻辑运算-----------------")
 arr1 = np.array([1, 3, 5, 7])
 arr2 = np.array([2, 4, 6, 8])
-cond = np.array([True, False, True, False])
+cond = np.array([True, True, False, False])
 
 # 该方法对大规模数据处理效率不高，也无法用于多维数组，where可以克服这个
-# c为True返回x,否则返回y
-result = [(x if c else y) for x, y, c in zip(arr1, arr2, cond)]
-print(result)
+zip_ret = zip(arr1, arr2, cond)  # <class 'zip'>; zip不可迭代
+result = [(x if c else y) for x, y, c in zip_ret]  # c为True返回x,否则返回y;这儿只是表达式
+print(result)  # [1, 3, 6, 8]
 
-print("\n-------------4.ufunc函数广播-----------------")
-arr1 = np.array([[0, 0, 0], [1, 1, 1], [2, 2, 2]])
-arr2 = np.array([1, 2, 3])
-print('arr1:\n', arr1)
-print('arr2:\n', arr2)
-print('arr1+arr2:\n', arr1 + arr2)
+print("\n-------------4.1.ufunc函数广播之多维和一维运算-----------------")
+a = np.array([[0, 0, 0], [1, 1, 1], [2, 2, 2]])  # 3*3
+b = np.array([10, 100, 1000])  # 1*3; 一位数组
+print('a:\n', a)
+print('b:\n', b)
+print('a+b:\n', a + b)  # 3*3;a的每行都加上对应的数值
 
-a = np.arange(1, 13).reshape(4, 3)
-b = np.arange(1, 5).reshape(4, 1)
-print(a)
-print(b)
-print(a + b)  # a的每一行都就加上b
-
-print("------")
-a = np.arange(1, 13).reshape(4, 3)
-b = np.arange(1, 5).reshape(4, 1)
-print(a)
-print(b)
-print(a + b)  # a的每一列都加上b
+print("\n-------------4.2.ufunc函数广播之多维和多维运算-----------------")
+a = np.arange(12).reshape(4, 3)
+b = np.array([10, 100, 1000, 10000]).reshape(4, 1)  # 注意是多维数组
+print("a:\n", a)
+print("b:\n", b)
+print("a+b:\n", a + b)  # a的每一列都加上对应的数值
