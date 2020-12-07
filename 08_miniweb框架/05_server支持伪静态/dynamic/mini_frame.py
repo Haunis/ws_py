@@ -17,7 +17,7 @@ def route(file_name):
         def call_func(*args, **kwargs):
             return func(*args, **kwargs)
 
-        return call_func()
+        return call_func
 
     return set_func
 

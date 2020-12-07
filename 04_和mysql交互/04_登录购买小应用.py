@@ -51,7 +51,7 @@ class MySqlProxy(object):
             goods_id = input("请输入要购买的商品id:")
             sql = "select * from goods where id='%s'" % goods_id
             count = self.cursor.execute(sql)
-            if count == 1:
+            if count == 1:  # 如果数据库中有该商品，直接购买
                 print("购买成功")
                 str_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
                 sql = "insert into orders (order_date_time,customer_id)values('%s','%s')" % (str_time, self.customer_id)

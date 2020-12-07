@@ -27,8 +27,8 @@ def route(file_name):
 # 相当于2步:
 #   1.set_func = put_in_dict("index.html")
 #   2.index = set_func(index)
-@route("index.html")
-def index():
+@route(r"index.html")
+def index(matcher):
     with open("./templates/index.html") as f:
         content = f.read()
     conn = sql.connect(host='127.0.0.1', port=3306, user='haunis', password='haunis', database='web_data',
@@ -55,20 +55,19 @@ def index():
                     value="添加" 
                     id="toAdd"
                     name="toAdd"
-                    systemidvalue="000007"
-                >
+                    systemidvalue="%s">
             </td>
         </tr>
     """
     tr = ""
     for line in all_data:
-        tr += tr_template % (line[0], line[1], line[2], line[3], line[4], line[5], line[6], line[7])
+        tr += tr_template % (line[0], line[1], line[2], line[3], line[4], line[5], line[6], line[7], line[1])
     content = re.sub(r"\{%content%\}", tr, content)
     return content
 
 
-@route("center.html")
-def center():
+@route(r"center.html")
+def center(matcher):
     with open("./templates/center.html") as f:
         content = f.read()
     conn = sql.connect(host='127.0.0.1', port=3306, user='haunis', password='haunis', database='web_data',
@@ -79,7 +78,6 @@ def center():
     all_data = cur.fetchall()
     cur.close()
     conn.close()
-
     tr_template = """
            <tr>
                <td>%s</td>
@@ -118,17 +116,66 @@ def center():
     return content
 
 
+@route(r"^add/([^\.]+)")
+def add_focus(matcher):
+    code = matcher.group(1)
+    conn = sql.connect(host='127.0.0.1', port=3306, user='haunis', password='haunis', database='web_data',
+                       charset='utf8')
+    cur = conn.cursor()
+
+    # 1.查询数据库中是否有该记录
+    sql_sentence = "select * from info where code=%s"
+    count = cur.execute(sql_sentence, code)
+    ret = cur.fetchone()
+    if not ret:  # 无记录，则返回
+        cur.close()
+        conn.close()
+        return "无该条记录：%s" % code
+
+    # 2.查询是否已经自选
+    # sql_sentence = "select * from focus where info_id=(select id from info where code='%s');"
+    sql_sentence = "select * from info as i inner join focus as f on i.id=f.info_id having i.code=%s;"
+    count = cur.execute(sql_sentence, code)
+    ret = cur.fetchone()
+    if ret:  # 已经自选了，则告知不在自选
+        cur.close()
+        conn.close()
+        return "已经自选了：%s" % code
+
+    # 3.有记录且无自选则在关注里插入该条数据
+    sql_sentence = "insert into focus (info_id) select id from info where code = %s;"
+    count = cur.execute(sql_sentence, code)
+    conn.commit()
+    cur.close()
+    conn.close()
+    return "加入自选成功:%s" % code
+
+
+# env['FILE_PATH']: index.html,center.html, add/008.html
 def application(env, start_response):
-    start_response('200 OK', [('Content-Type', 'text/html;charset=utf-8')])  # 回调,返回header
+    if start_response:
+        start_response('200 OK', [('Content-Type', 'text/html;charset=utf-8')])  # 回调,返回header
     file = env['FILE_PATH']
 
     if len(file) == 0:
         return "欢迎来到主页---------time:%s" % time.ctime()  # 返回body
     else:
+        func = matcher = None
+        for url_pattern, fun in g_func_dict.items():
+            ret = re.match(url_pattern, file)
+            if ret:  # 字典里有存储该file对应的函数
+                print("===>ret:", ret)
+                func = fun
+                matcher = ret
+                break
         try:
-            func = g_func_dict[file]
+            return func(matcher)
         except Exception as e:
-            LogUtils.e("keyerror:" + str(e))
+            LogUtils.e("无该文件:%s" % file)
+            LogUtils.e("error:%s" % str(e))
+            # print("无该文件:%s" % file)
             return "无文件: %s--------现在时间是:%s" % (file, time.ctime())
-        else:
-            return func()
+
+
+if __name__ == "__main__":
+    application({"FILE_PATH": "add/33.html"}, None)

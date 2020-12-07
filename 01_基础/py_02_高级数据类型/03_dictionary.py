@@ -54,10 +54,14 @@ print("\n-----------------6.清空字典--------------------")
 dict_lee2.clear()
 print("dict_lee2 : %s" % dict_lee2)
 
-print("-----------------7.遍历--------------------")
+print("-----------------7.1 遍历--------------------")
 dict_lee3 = dict_lee
 for key in dict_lee3:
     print("%s : %s " % (key, dict_lee3[key]))
+
+print("-----------------7.2 遍历--------------------")
+for key, value in dict_lee3.items():
+    print("%s : %s " % (key, value))
 
 print("-----------------8.列表里存字典--------------------")
 card_list = [{"name": "lee", "age": 20}, {"name": "wang", "age": 21}]
