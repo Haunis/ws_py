@@ -25,7 +25,7 @@ print("----------------------3.sub---------------------")
 print("替换为指定字符串....")
 temp_str = "a=1,b=2,c=3"
 print("before：%s" % temp_str)
-ret = re.sub(r"\d+", "999", temp_str)  # 返回字符串
+ret = re.sub(r"\d+", "999", temp_str)  # 返回字符串;将所有数字替换为999
 print("after：%s" % temp_str)  # 原字符串并不会改变
 print("ret：%s" % (ret))
 

@@ -28,7 +28,7 @@ def main():
     print("count:", count)
     one_data = cur.fetchone()  # 值取第一行，是个元组
     many_data = cur.fetchmany(3)  # 接着取3行;元组里放3个元组
-    all_data = cur.fetchall()  # 取全部；元组里放剩下的全部
+    all_data = cur.fetchall()  # 取剩下的全部；all_data是一个元组，元组里每个item也是元组
 
     print("-------------------one_data------------------------")
     print(one_data)
