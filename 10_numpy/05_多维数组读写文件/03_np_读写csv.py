@@ -1,6 +1,7 @@
 """
 np.loadtxt(fname, dtype=, comments=’#’, delimiter=None, converters=None,
         skiprows=0, usecols=None, unpack=False, ndmin=0, encoding=‘bytes’)
+
     fname：	str，读取的CSV文件名
     delimiter：str，数据的分割符
     usecols： tuple ，执行加载数据文件中的哪些列
@@ -11,10 +12,11 @@ np.loadtxt(fname, dtype=, comments=’#’, delimiter=None, converters=None,
 """
 import numpy as np
 
-ret = np.loadtxt("iris.csv", dtype=str, comments='#', delimiter=None, converters=None,
-        skiprows=0, usecols=None, unpack=False, ndmin=0, encoding='bytes')
-print(type(ret)) #返回narray
-#print(ret)
-print(ret[0])
-print(ret[1])
-print(ret[2])
+nda = np.loadtxt("iris.csv", dtype=str, comments='#', delimiter=None, converters=None,
+                 skiprows=0, usecols=None, unpack=False, ndmin=0, encoding='bytes')
+print(type(nda))  # 返回ndarray
+# print(nda)
+print(nda.shape)  # (151,)一维数组，里面有151个元素
+print(nda[0])
+print(nda[1])
+print(nda[2])

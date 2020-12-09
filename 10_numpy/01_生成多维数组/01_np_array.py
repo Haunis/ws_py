@@ -26,6 +26,7 @@ print('ret:', ret)  # 和data1输出结果不同,data1输出结构有逗号
 print(type(ret))  # numpy.ndarray
 print("ret.dtype:", ret.dtype)  # int64
 print("w1[0]:", ret[0])  # 直接获取一维数组里的元素
+print("ret.shape:", ret.shape)  # (4,)
 
 print("\n-------------2.接收列表------------------")
 data3 = [[1, 2, 3, 4], [5, 6, 7, 8]]  # 多维数组

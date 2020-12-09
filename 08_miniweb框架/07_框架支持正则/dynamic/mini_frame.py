@@ -3,11 +3,16 @@
 要让浏览器正切解析中文,要在回复头中添加:charset=utf-8
 
 带参数的装饰器:用返回的函数作为装饰器
+
+浏览器发来的特殊符号是经过编码的,所以框架这边收到时要进行解码
+    编码: urllib.parse.quote()
+    解码: urllib.parse.unquote()
 """
 import time
 import LogUtils
 import re
 import pymysql as sql
+import urllib.parse
 
 g_func_dict = dict()
 
@@ -208,11 +213,13 @@ def show_update_page(matcher):
     return content
 
 
-@route(r"update/(\w+)/(\w+)\.html")  # update/603993/值的购买.html
+# update/603993/值的购买.html
+# 为了可以匹配浏览器发送来的编码数据如 update/603993/%E5%A5%BD.html,第二个括号使用.匹配
+@route(r"update/(\w+)/(.+)\.html")
 def update_comment(matcher):
     code = matcher.group(1)
     comment = matcher.group(2)
-
+    comment = urllib.parse.unquote(comment)  # 解码
     conn = sql.connect(host='127.0.0.1', port=3306, user='haunis', password='haunis', database='web_data',
                        charset='utf8')
     cur = conn.cursor()
@@ -245,9 +252,8 @@ def application(env, start_response):
         try:
             return func(matcher)
         except Exception as e:
-            # LogUtils.e("无该文件:%s" % file)
-            # LogUtils.e("error:%s" % str(e))
-            print("无该文件:%s" % file)
+            LogUtils.e("无该文件:%s" % file)
+            LogUtils.e("error:%s" % str(e))
             return "无文件: %s--------现在时间是:%s" % (file, time.ctime())
 
 
