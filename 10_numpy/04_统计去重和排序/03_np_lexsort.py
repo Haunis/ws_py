@@ -12,7 +12,7 @@ b = np.array([5, 2, 6, 7])
 c = np.array([5, 2, 4, 6])  # c是最后传入的,按c进行排序;
 ret_nda = np.lexsort((a, b, c))  # narray
 
-print("ret_nda:", ret_nda) # [1 2 0 3]
+print("ret_nda:", ret_nda)  # [1 2 0 3] ,排在第一位的是原数组索引1的元素
 print("c[ret_nda]:", c[ret_nda])
 
 ret_zip = zip(a[ret_nda], b[ret_nda], c[ret_nda])  # 将可迭代对象打包成一个个元组,返回zip对象

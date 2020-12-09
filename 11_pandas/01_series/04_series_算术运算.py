@@ -9,12 +9,11 @@ import pandas as pd
 import numpy as np
 
 se1 = pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd'])
+se2 = pd.Series([10, 20, 30, 40], index=['d', 'e', 'f', 'g'])
+ret_se = se1 + se2
 
 print('se1:\n%s' % se1.__str__(), end="\n\n")
-
-se2 = pd.Series([10, 20, 30, 40], index=['d', 'e', 'f', 'g'])
 print('se2:\n%s' % se2.__str__(), end="\n\n")
-
-print(se1 + se2, end="\n\n")
+print('ret_se:\n%s' % ret_se.__str__(), end="\n\n")
 
 print(se1.mean() > se1)  # 返回bool类型的Series
