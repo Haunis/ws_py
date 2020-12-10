@@ -1,0 +1,7 @@
+2020-12-10 22:25:50,102 - 02_输出到文件.py[line:10] - WARNING: 这是 loggging a warning message
+2020-12-10 22:25:50,102 - 02_输出到文件.py[line:11] - ERROR: 这是 an loggging error message
+2020-12-10 22:25:50,102 - 02_输出到文件.py[line:12] - CRITICAL: 这是 loggging critical message
+2020-12-10 22:29:00,299 - 03_输出到控制台和文件.py[line:27] - INFO: 03 这是 logger info message
+2020-12-10 22:29:00,299 - 03_输出到控制台和文件.py[line:28] - WARNING: 03 这是 logger warning message
+2020-12-10 22:29:00,299 - 03_输出到控制台和文件.py[line:29] - ERROR: 03 这是 logger error message
+2020-12-10 22:29:00,299 - 03_输出到控制台和文件.py[line:30] - CRITICAL: 03 这是 logger critical message
