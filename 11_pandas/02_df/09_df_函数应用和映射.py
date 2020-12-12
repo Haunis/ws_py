@@ -30,15 +30,15 @@ def main():
     li = [x for x in range(9)]
     ret_ndarray = np.array(li).reshape(3, 3)
     df = pd.DataFrame(ret_ndarray, columns=['c1', 'c2', 'c3'], index=['app', 'win', 'mac'])
-    print(df)
+    print("df:\n%s" % df.__str__())
     df2 = df.apply(np.mean)  # np.mean是个函数; 默认是每一列的平均值
-    print(df2)
+    print("\ndf.apply(np.mean):\n%s" % df2.__str__())
 
     print("\n-------------3.df.applymap----------------")
-    print(df)
+    print("before:\n", df)
     # df2 = df.applymap(lambda x: '%.3f' % x)   # 保留小数点后三位
     df2 = df.applymap(lambda x: x * 2)  # 每个数乘以2
-    print(df2)
+    print("\nafter:\n", df2)
 
 
 if __name__ == "__main__":

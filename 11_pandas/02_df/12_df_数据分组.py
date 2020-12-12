@@ -1,7 +1,8 @@
 """
 和数据库中的表分组很像
-对某一列A进行按某一列B进行分组： df[A].groupby(df[B])
-对所有列按某一列B进行分组： df.groupby(B)
+    对某一列A进行按某一列B进行分组： df[A].groupby(df[B])
+    对所有列按某一列B进行分组： df.groupby(B)
+    对df索引按字典进行分组： df.groupby(dict)
 
 groupby方法
     根据索引或字段对数据进行分组。
@@ -30,13 +31,16 @@ SeriesGroupBy支持函数:
 import numpy as np
 import pandas as pd
 
-df = pd.DataFrame({'key1': ['a', 'a', 'b', 'b', 'a'],
-                   'key2': ['yes', 'no', 'yes', 'yes', 'no'],
-                   'data1': [1, 2, 3, 4, 5],
-                   'data2': [10, 20, 30, 40, 50]})
+dict_data = {
+    'key1': ['a', 'a', 'b', 'b', 'a'],
+    'key2': ['yes', 'no', 'yes', 'yes', 'no'],
+    'data1': [1, 2, 3, 4, 5],
+    'data2': [10, 20, 30, 40, 50]
+}
+df = pd.DataFrame(dict_data)
 print(df, end="\n\n")
 
-print("\n------------1.Series.groupby(series)-----------------")
+print("\n------------1.df['xxx'].groupby(df['yyy'])-----------------")
 se_groupby = df['data1'].groupby(df['key2'])  # grouped是SeriesGroupBy; df['data1']得到的是Series
 print("se_groupby.size():")
 print(se_groupby.size(), end="\n\n")  # grouped.size()得到的是Series
@@ -47,31 +51,32 @@ print(se_groupby.mean(), end="\n\n")  # grouped.mean()得到的是Series
 print("se_groupby.sum():")
 print(se_groupby.sum(), end="\n\n")
 
-print("\n------------2.1 DataFrame.groupby(key2)按列分组-----------------")
+print("\n------------2.1 df.groupby('xxx')按列分组-----------------")
 # DataFrame的列作为分组键，但需要注意的是用于分组的对象必须是DataFrame数据本身，否则搜索不到索引名称会报错。
 # df.groupby('key2')返回的是 DataFrameGroupBy
 df_key2_mean = df.groupby('key2').mean()  # df_key2_mean是DataFrame
 print("grouped_key2_mean:")
 print(df_key2_mean.applymap(lambda x: "%.2f" % x))
 
-print("\n------------2.2 DataFrame.groupby(key1,key2)按列分组-----------------")
+print("\n------------2.2 df.groupby('xxx','yyy')按列分组-----------------")
 df_key1_key2_mean = df.groupby(['key1', 'key2']).mean()
 print(df_key1_key2_mean)
 
-print("\n------------2.3 DataFrame.groupby()按指定字典分组-----------------")
+print("\n------------2.3 df.groupby(dict)按指定字典分组-----------------")
 # 如果原始的DataFrame中的分组信息很难确定或不存在，可以通过字典结构，定义分组信息。
-# df = pd.DataFrame(np.random.normal(size=(6, 5)), index=['a', 'b', 'c', 'A', 'B', 'c'])
-df = pd.DataFrame(np.arange(1, 31).reshape(6, 5), index=['a', 'b', 'c', 'A', 'B', 'c'])
-print("df:\n%s" % df.__str__())
-
-wdict = {'a': 'one',
-         'A': 'one',  # df中a index ,A index最终按one index在DataFrame显示(就是下面的ret_df)
-         'b': 'two',
-         'B': 'two',
-         'c': 'three'}
-ret_groupby = df.groupby(wdict)  # ret是DataFrameGroupBy
-ret_df = ret_groupby.sum()  # ret_df是DataFrame
-print("分组汇总后的结果为:\n", ret_df)  # 将df中a和A两行进行列相加(a,A在字典中对应的value都是one), b和B两行进行列相加，c行单独不相加
+# 就是将df的索引按字典分组，索引对应字典的key，最后统计的结果按字典的value呈现
+wdict = {
+    0: 'one',
+    1: 'one',  # 索引0 ，1 按one分类
+    2: 'two',
+    3: 'two',  # 索引2 ，3按two分类
+    4: 'three'  # 索引3 按three分类
+}
+ret_groupby = df.groupby(wdict)  # DataFrameGroupBy
+ret_df_size = ret_groupby.size()  # DataFrame
+ret_df_sum = ret_groupby.sum()  # DataFrame
+print("ret_groupby.size():\n", ret_df_size)  # 将分组后df中one,two,three组中的列的值相加
+print("ret_groupby.sum():\n", ret_df_sum)  #
 
 print("\n------------2.4 DataFrame.groupby()按函数分组-----------------")
 
@@ -84,18 +89,18 @@ def judge(x):
         return 'b'
 
 
-df = pd.DataFrame(np.random.randint(0, 10, (4, 4)))
-print(df)
-print("---")
-ret_series = df[3].map(judge)  # ret是Series
+ret_series = df['data1'].map(judge)  # ret是Series
 print("ret_series:\n%s" % ret_series.__str__())
 
-ret = df[3].groupby(ret_series)  # 返回SeriesGroupBy；
-print("\nret.sum():")
-print(ret.sum())
+ret = df['data1'].groupby(ret_series)  # 返回SeriesGroupBy；
+print("\nret.size():")
+print(ret.size())
 
 print("\nret.count():")
 print(ret.count())
+
+print("\nret.sum():")
+print(ret.sum())
 
 print("\nret.mean():")
 print(ret.mean())

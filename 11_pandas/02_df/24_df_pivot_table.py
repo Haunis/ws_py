@@ -25,7 +25,7 @@ data = pd.DataFrame({'k1': ['a', 'a', 'a', 'a', 'b', 'b', 'b', 'b', 'c', 'c', 'c
 print(data)  # DataFrame
 print("\n--------------------1.默认aggfunc mean-----------------------")
 ret_df = data.pivot_table(index='k1', columns='k2')  # DataFrame
-print(ret_df)  # 生成的结果中k1,k2对应值如(k1-1,k2-1)是4个a one = 1键值对的平均值
+print(ret_df)  # 就是k1作index,k2作column时，其他列的数据统计
 
 print("\n--------------------2.aggfunc=sum-----------------------")
 ret_df = data.pivot_table(index='k1', columns='k2', aggfunc='sum')
