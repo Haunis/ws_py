@@ -31,5 +31,5 @@ df = pd.DataFrame([
 
 df.columns = ['color', 'size', 'prize', 'class label']
 print(df, end="\n\n")
-ret_df = pd.get_dummies(df)  # DataFrame
+ret_df = pd.get_dummies(df, columns=['color'])  # DataFrame;不指定columns的话，默认对所有非int变量进行哑变量处理
 print(ret_df)
