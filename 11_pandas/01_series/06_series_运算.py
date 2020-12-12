@@ -14,6 +14,10 @@ ret_se = se1 + se2
 
 print('se1:\n%s' % se1.__str__(), end="\n\n")
 print('se2:\n%s' % se2.__str__(), end="\n\n")
-print('ret_se:\n%s' % ret_se.__str__(), end="\n\n")
 
-print(se1.mean() > se1)  # 返回bool类型的Series
+print("\n--------------1.算术运算----------------")
+print('se1+se2:\n%s' % ret_se.__str__())
+
+print("\n--------------2.比较运算----------------")
+ret_se = se1 < se1.mean()
+print(ret_se)

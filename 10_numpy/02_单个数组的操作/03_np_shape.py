@@ -7,7 +7,7 @@ import numpy as np
 
 print("----------1.一维数组-----------")
 nda = np.arange(0, 24)
-print("shape:", nda.shape)  # (24,);返回一个元组
+print("shape:", nda.shape)  # (24,) 返回一个元组
 print(nda)
 
 print("\n----------2.二维数组-----------")

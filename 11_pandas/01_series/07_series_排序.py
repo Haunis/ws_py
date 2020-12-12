@@ -10,6 +10,6 @@ sort_values：
 import pandas as pd
 
 se = pd.Series([1, 7, 4, 0], index=['c', 'b', 'a', 'd'])
-print(se)
-print('排序后的Series:\n', se.sort_index())
-print('值排序后的Series:\n', se.sort_values())
+print("原se:\n%s" % se.__str__())
+print('\n按index排序:\n%s' % se.sort_index().__str__())
+print('\n按value排序:\n%s' % se.sort_values().__str__())
