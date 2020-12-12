@@ -25,17 +25,21 @@ df.sum():
 """
 import pandas as pd
 
-data = {'fruit': ['apple', 'grape', 'banana'], 'price': [70, 40, 50], 'weight': [1, 2, 3]}
+data = {
+    'fruit': ['apple', 'grape', 'banana'],
+    'price': [70, 40, 50],
+    'weight': [1, 2, 3]
+}
 df = pd.DataFrame(data)
 print(df)
 
 print("\n----------------1.df.sum()-----------------")
-ret = df.sum()  # 返回Series
+ret = df.sum()  # 返回Series; 如果某一列是string的话，则是各个字符串拼接
 print('按列汇总:\n%s' % ret.__str__())
 
-ret = df.sum(axis=1)
-print('按行汇总:\n%s' % ret.__str__())
+ret = df.sum(axis=1)  # Series; 字符串不参与运算，数值相继爱
+print('\n按行汇总:\n%s' % ret.__str__())
 
 print("\n----------------2.df.describe()-----------------")
-ret = df.describe()  # 返回DataFrame
+ret = df.describe()  # 返回DataFrame; 对每个数值型的[列]数据进行统计
 print(ret)

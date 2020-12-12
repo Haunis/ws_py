@@ -1,4 +1,7 @@
 """
+df.index: 是Index对象
+df.columns: 是Index对象
+
 构建Series或 DataFrame时，所用到的任何数组或其他序列的标签都会被转换成一个Index对象
 
 Index对象常用方法和属性:
@@ -24,15 +27,17 @@ dict_temp = {
     'city': ['北京', '上海', '广州', '北京']
 }
 df = pd.DataFrame(dict_temp, index=['a', 'b', 'c', 'd'])
-
 print(df)
+
+print("\n-----------1.df.index和df.columns---------")
 print("df.index: ", df.index)  # Index对象; 如果不指定index就是RangeIndex对象
 print("df.columns:", df.columns)  # Index(['city', 'name', 'sex', 'year'], dtype='object')
 
-print()
+print("\n-----------2.Index是可迭代对象-----------")
 print("'name'in df.columns:", 'name' in df.columns)  # True
 print("'a'in df.index:", 'a' in df.index)  # True
 
-print("\n--------index.insert()------")
-df.index.insert(0, 'w')  # 插入失败
-print(df.index)
+print("\n-----------3.Index.insert---------")
+ret_index = df.index.insert(0, 'w')  # 原df.index不变,返回新Index
+print(df.index)  # Index(['a', 'b', 'c', 'd'], dtype='object')
+print(ret_index)  # Index(['w', 'a', 'b', 'c', 'd'], dtype='object')

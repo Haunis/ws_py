@@ -17,7 +17,10 @@ def f(x):  # series.map(f) 就是对series的每个元素进行操作
 
 def main():
     print("\n-------------1.series.map(f)----------------")
-    data = {'fruit': ['apple', 'grape', 'banana'], 'price': ['30元', '43元', '28元']}
+    data = {
+        'fruit': ['apple', 'grape', 'banana'],
+        'price': ['30元', '43元', '28元']
+    }
     df = pd.DataFrame(data)
     print(df)
     df['price'] = df['price'].map(f)  # df['price']返回的是Series;
@@ -28,7 +31,7 @@ def main():
     ret_ndarray = np.array(li).reshape(3, 3)
     df = pd.DataFrame(ret_ndarray, columns=['c1', 'c2', 'c3'], index=['app', 'win', 'mac'])
     print(df)
-    df2 = df.apply(np.mean)  # np.mean是个函数; 每一列的平均值
+    df2 = df.apply(np.mean)  # np.mean是个函数; 默认是每一列的平均值
     print(df2)
 
     print("\n-------------3.df.applymap----------------")

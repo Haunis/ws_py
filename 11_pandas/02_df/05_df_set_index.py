@@ -1,7 +1,9 @@
 """
-set_index(keys):
-    不使用默认的索引,指定columns作为索引
-    set_index后,keys这一列已经不算是DataFrame的列了
+使用已有的列作为index
+
+set_index(column):
+    使用指定column作为索引
+    set_index后,column这一列已经不算DataFrame的列了
 """
 import pandas as pd
 
@@ -15,7 +17,7 @@ dict_temp = {
 df = pd.DataFrame(dict_temp)  # DataFrame对象
 print(df)
 
-print("\n-----------set_index-------------")
+print("\n-----------set_index('city')-------------")
 df2 = df.set_index('city')
 print(df2)
-print(df2.iloc[:, 0])  # set_index后,city已经不算是列里的了
+print("\ndf2.iloc[:, 0]:\n%s" % df2.iloc[:, 0].__str__())  # set_index后,city已经不算是列里的了

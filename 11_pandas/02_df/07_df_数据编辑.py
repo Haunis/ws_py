@@ -14,35 +14,35 @@
 import pandas as pd
 
 dict_temp = {
-    'name': ['张三', '李四', '王五', '小明'],
-    'sex': ['female', 'female', 'male', 'male'],
-    'year': [2001, 2001, 2003, 2002],
-    'city': ['北京', '上海', '广州', '北京']
+    'name': ['张三0', '李四0', '王五0', '赵六0'],
+    'sex': ['female1', 'female1', 'male1', 'male1'],
+    'year': [2001, 2002, 2003, 2004],
+    'city': ['北京3', '上海3', '广州3', '深圳3']
 }
 
 df = pd.DataFrame(dict_temp)  # DataFrame对象
-df = df.set_index('city')  # 返回一个新的df,原df不变,所以要重新赋值
+# df = df.set_index('city')  # 返回一个新的df
 print(df)
 
 print("\n--------------1.append添加一行----------------")
-data1 = {'city': '兰州', 'name': '李红', 'year': 2005, 'sex': 'female'}
-df2 = df.append(data1, ignore_index=True)
+dict_one = {'city': '兰州', 'name': '李红', 'year': 2005, 'sex': 'female'}
+df2 = df.append(dict_one, ignore_index=True)
 print(df2)
 
 print("\n--------------2.insert插入一列----------------")
-df['score'] = [85, 78, 96, 80]  # 直接为列赋值
-df.insert(1, 'No', ['001', '002', '003', '004'])  # 使用insert方法
-print(df)
+df2['score'] = [0, 10, 20, 30, 40]  # 直接为列赋值
+df2.insert(1, 'No', ['000', '001', '002', '003', '004'])  # 使用insert方法
+print(df2)
 
 print("\n--------------3.删除一行----------------")
-# df.drop("广州")  # 返回新df
-df.drop("广州", inplace=True)
-print(df)
+# df2.drop(4)  # 返回新df
+df2.drop(4, inplace=True)  # 在原来的df中删除，不返回新的df
+print(df2)
 
 print("\n--------------4.删除一列----------------")
-df.drop('sex', axis=1, inplace=True)
-print(df)
+df2.drop('score', axis=1, inplace=True)
+print(df2)
 
 print("\n--------------5.修改数据----------------")
-df['No'] = [111, 222, 333]
-print(df)
+df2['No'] = [0, 111, 222, 333]
+print(df2)

@@ -9,9 +9,9 @@ import matplotlib.pyplot as plt
 # % matplotlib inline #jupyter notebook使用在代码下方直接显示图片
 
 # series.plot()
-x = np.arange(0, 10)
-s = pd.Series(np.sin(x), index=x)
-s.plot(marker='o')
+x = np.arange(0, 10, 0.1)
+se = pd.Series(np.sin(x), index=x)
+se.plot(marker='o')
 
 # df.plot()
 df = pd.DataFrame({'normal': np.random.normal(size=50),

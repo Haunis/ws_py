@@ -1,5 +1,6 @@
 """
-在已有Series的基础上创建新的Series
+在已有Series的基础上创建新的Series.
+和DataFrame.reindex()类似
 
 Series.reindex(list,fill_value,method): 如果某个索引对应的value不存在的话，则默认是NaN
     list: 使用新的索引

@@ -1,7 +1,9 @@
 """
-DataFrame.reindex(index,columns,fill_value,...)
-    和Series.reindex()使用类似;返回一个新的DataFrame
+在已有DataFrame的基础上创建新的DataFrame
+和Series.reindex()使用类似
 
+DataFrame.reindex(index,columns,fill_value,...)
+    返回一个新的DataFrame
     参数使用说明
     index	用于索引的新序列
     method	插值（填充）方式

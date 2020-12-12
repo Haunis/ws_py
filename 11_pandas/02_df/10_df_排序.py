@@ -6,9 +6,14 @@
 """
 import pandas as pd
 
-data = {'fruit': ['apple', 'grape', 'banana'], 'price': [70, 40, 50]}
+data = {
+    'fruit': ['apple', 'grape', 'banana'],
+    'price': [70, 40, 50]
+}
+
 df = pd.DataFrame(data)
 print(df)
 
 df2 = df.sort_values(by='price', ascending=False)  # 对price列进行排序;降序
+print("\n排序后：")
 print(df2)

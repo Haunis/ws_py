@@ -11,6 +11,7 @@ pd.DataFrame(data=None, index=None, columns=None, dtype=None, copy=False)
 
 """
 import pandas as pd
+import numpy as np
 
 print("\n-------------1.使用字典创建DataFrame--------------")
 dict_temp = {
@@ -24,7 +25,7 @@ df = pd.DataFrame(dict_temp)  # DataFrame对象
 print(df)
 
 print("\n-------------2.使用字典和指定columns创建---------------")
-# 指定column可以更改DataFrame中列的位置
+# 以指定的columns为准，字典中有的则列出来，无则为NaN
 # dict_temp没有'temp_field'这个key,temp_field在DataFrame这一列对应的value为NaN
 df1 = pd.DataFrame(dict_temp, columns=['name', 'year', 'sex', 'city', 'temp_field'])
 print(df1)
@@ -33,3 +34,8 @@ print("\n-------------3.使用字典和指定columns,index创建---------------"
 df3 = pd.DataFrame(dict_temp, columns=['name', 'sex', 'year', 'city'],
                    index=['a', 'b', 'c', 'd'])
 print(df3)
+
+print("\n-------------4.使用ndarray和指定columns,index创建---------------")
+df4 = pd.DataFrame(np.arange(9).reshape(3, 3),
+                   index=['a', 'c', 'd'], columns=['one', 'two', 'four'])
+print(df4)

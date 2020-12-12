@@ -1,5 +1,7 @@
 """
 和数据库中的表分组很像
+对某一列A进行按某一列B进行分组： df[A].groupby(df[B])
+对所有列按某一列B进行分组： df.groupby(B)
 
 groupby方法
     根据索引或字段对数据进行分组。
@@ -35,7 +37,7 @@ df = pd.DataFrame({'key1': ['a', 'a', 'b', 'b', 'a'],
 print(df, end="\n\n")
 
 print("\n------------1.Series.groupby(series)-----------------")
-se_groupby = df['data1'].groupby(df['key1'])  # grouped是SeriesGroupBy; df['data1']得到的是Series
+se_groupby = df['data1'].groupby(df['key2'])  # grouped是SeriesGroupBy; df['data1']得到的是Series
 print("se_groupby.size():")
 print(se_groupby.size(), end="\n\n")  # grouped.size()得到的是Series
 
@@ -46,14 +48,15 @@ print("se_groupby.sum():")
 print(se_groupby.sum(), end="\n\n")
 
 print("\n------------2.1 DataFrame.groupby(key2)按列分组-----------------")
-# DataFrame数据的列索引名可以作为分组键，但需要注意的是用于分组的对象必须是DataFrame数据本身，否则搜索不到索引名称会报错。
+# DataFrame的列作为分组键，但需要注意的是用于分组的对象必须是DataFrame数据本身，否则搜索不到索引名称会报错。
 # df.groupby('key2')返回的是 DataFrameGroupBy
 df_key2_mean = df.groupby('key2').mean()  # df_key2_mean是DataFrame
 print("grouped_key2_mean:")
 print(df_key2_mean.applymap(lambda x: "%.2f" % x))
 
 print("\n------------2.2 DataFrame.groupby(key1,key2)按列分组-----------------")
-print(df.groupby(['key1','key2']).mean())
+df_key1_key2_mean = df.groupby(['key1', 'key2']).mean()
+print(df_key1_key2_mean)
 
 print("\n------------2.3 DataFrame.groupby()按指定字典分组-----------------")
 # 如果原始的DataFrame中的分组信息很难确定或不存在，可以通过字典结构，定义分组信息。

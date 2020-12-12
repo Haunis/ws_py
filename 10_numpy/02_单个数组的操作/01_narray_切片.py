@@ -80,3 +80,4 @@ print("\nnda2[nda_bool]:\n", nda2[nda_bool])  # 二维; 取第0行，第1行，�
 print('\nnda2[mask, 1]：\n', nda2[nda_bool, 1])  # [1 5] 一维; 索引第0,1行, 第1列元素
 
 print("----test---")
+print(nda2[:2, ])

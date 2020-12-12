@@ -8,10 +8,11 @@ dict_temp = {
 }
 
 df = pd.DataFrame(dict_temp)  # DataFrame对象
+print(df)
 
-print('信息表的所有值为：\n', df.values, end='\n\n')
+print('信息表的所有值为：\n', df.values, end='\n\n')  # ndarray
 
 print('信息表的所有列为：', df.columns)  # df.columns为Index对象
-print('信息表的元素个数为： ', df.size)  # 16
+print('信息表的元素个数为： ', df.size)  # 16; 行*列
 print('信息表的维度是: ', df.ndim)  # 2
 print('信息表的形状为：', df.shape)  # (4,4)
