@@ -16,6 +16,7 @@ self: 就是java里的this;python中self只是个形参不是关键字，可以�
 
 类是一个特殊的对象(类对象)
 由类对象创建出来的对象就是实例对象;类对象只有一个,而实例对象可以有多个
+__class__:指向创建该实例的类对象
 
 每个实例对象里均有__class__属性，该属性指向类对象
 
@@ -40,3 +41,5 @@ car.run()
 
 print("car=", car)  # 相当于打印一个元组
 print("id(car)=%#x" % id(car))  # 实体对象的地址
+
+print("cal.__class__: ", car.__class__)  # <class '__main__.Car'>； car.__class__指向类对象

@@ -2,6 +2,14 @@
 pd.read_excel()需要xlrd支持:
     pip3 install xlrd
 
+就是对某些列应用某些函数
+    例一：df.agg([np.sum, np.mean])
+        data[['淋巴细胞计数', '白细胞计数']].agg([np.sum, np.mean])
+    例二：SeriesGroupBy.agg(np.mean)
+        data.groupby('性别')['血小板计数'].agg(np.mean)
+
+
+
 agg(),aggregate():
     都支持对每个分组应用某个函数,包括Python内置函数或自定义函数。
     同时，这两个方法也能够直接对DataFrame进行函数应用操作。

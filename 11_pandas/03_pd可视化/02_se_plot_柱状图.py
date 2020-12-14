@@ -23,5 +23,5 @@ male      2
 """
 
 print("\nret_se:\n%s" % ret_se.__str__())
-ret_se.plot(kind='bar', rot=3)
+ret_se.plot(kind='bar', rot=3)  # ret_se索引对应横坐标，value对应纵坐标
 plt.show()
