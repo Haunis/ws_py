@@ -40,24 +40,26 @@ dict_data = {
 df = pd.DataFrame(dict_data)
 print(df, end="\n\n")
 
-print("\n------------1.df['xxx'].groupby(df['yyy'])-----------------")
+print("\n------------1.df['data1'].groupby(df['key2'])-----------------")
 # 相当于df.groupby('yyy')只取了xxx这列
 se_groupby = df['data1'].groupby(df['key2'])  # 返回SeriesGroupBy; df['data1']得到的是Series
-print("se_groupby.size():")
-print(se_groupby.size(), end="\n\n")  # grouped.size()得到的是Series
-
 print("se_groupby.mean():")
 print(se_groupby.mean(), end="\n\n")  # grouped.mean()得到的是Series
-print("df.groupby('key2').mean()['data1']:\n", df.groupby("key2").mean()['data1'])
+
+print("se_groupby.size():")
+print(se_groupby.size(), end="\n\n")  # grouped.size()得到的是Series
 
 print("se_groupby.sum():")
 print(se_groupby.sum(), end="\n\n")
 
-print("\n------------2.1 df.groupby('xxx')按列分组-----------------")
+print("\n------------2.1 df.groupby('key2')按列分组-----------------")
 # DataFrame的列作为分组键，但需要注意的是用于分组的对象必须是DataFrame数据本身，否则搜索不到索引名称会报错。
-# df.groupby('key2')返回的是 DataFrameGroupBy
-df_key2_mean = df.groupby('key2').mean()  # df_key2_mean是DataFrame
-print("grouped_key2_mean:")
+print("\ndf.groupby('key2').mean()['data1']:\n", df.groupby("key2").mean()['data1'])
+print("\ndf.groupby('key2')['data1'].mean():\n", df.groupby("key2")['data1'].mean())  # 和上述相同
+
+ret_df_groupby = df.groupby('key2')  # DataFrameGroupBy
+df_key2_mean = ret_df_groupby.mean()  # df_key2_mean是DataFrame
+print("\ndf_key2_mean:")
 print(df_key2_mean.applymap(lambda x: "%.2f" % x))
 
 print("\n------------2.2 df.groupby('xxx','yyy')按列分组-----------------")

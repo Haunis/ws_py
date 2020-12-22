@@ -22,9 +22,7 @@ pd.merge(left, right, how='inner', on=None, left_on=None, right_on=None,
     sort:	合并后会对数据排序，默认为True
     suffixes:	修改重复名;字符串值组成的元组，用于指定当左右DataFrame存在相同列名时在列名后面附加的后缀名称，默认为('_x','_y')
 
-与SQL中的 join 用法类似,但还是有区别的：
-    inner join: sql是将两个表(如a 11行，b 12行)合并成一个11*12行的大表
-                而pd.merge是取key的交集
+与SQL中的 join 用法类似
 
 merge后的表index默认从0开始
 """
@@ -33,14 +31,14 @@ import numpy as np
 
 print("\n------------------1.默认合并--------------------\n")
 df_price = pd.DataFrame({'fruit': ['a', 'b', 'c', 'd'],
-                         'price': [8, 7, 9, 11]})
+                         'price': [1, 2, 3, 4]})
 df_amount = pd.DataFrame({'fruit': ['a', 'b', 'c'],
-                          'amount': [5, 11, 8]})
+                          'amount': [4, 12, 13]})
 # display(df_price, amount, pd.merge(df_price, amount))
 # 没有指定连接键，默认用重叠列名(就是fruit)
 # 将第二个DataFrame df_amount的列放在第一个df的列的后面
-ret_def = pd.merge(df_price, df_amount, on='fruit', how="inner")  # 默认inner join,取key交集,d没有链接上
-# ret_def = pd.merge(df_price, df_amount, how="inner")  # 默认inner join,取key交集,d没有链接上
+ret_def = pd.merge(df_price, df_amount, on='fruit', how="inner")  # 默认inner join,取fruit交集,d没有链接上
+# ret_def = pd.merge(df_price, df_amount, how="inner")  # 默认inner join,取fruit交集,d没有链接上
 print("df_price:")
 print(df_price, end="\n\n")
 
@@ -57,11 +55,18 @@ ret_def = pd.merge(df_price, df_amount, left_on='price', right_on='amount')
 print(ret_def)
 
 print("\n------------------3.通过多个键合并--------------------\n")
-# 就是两列名字都相等时才链接
-left = pd.DataFrame({'key1': ['one', 'one', 'two'], 'key2': ['a', 'b', 'a'], 'value1': np.arange(1, 4)})
-right = pd.DataFrame({'key1': ['one', 'one', 'two', 'two'], 'key2': ['a', 'a', 'a', 'b'], 'value2': np.arange(11, 15)})
+# 和数据库的inner left right类似
+left = pd.DataFrame({
+    'key1': ['one', 'one', 'two'],
+    'key2': ['a', 'b', 'a'],
+    'value1': np.arange(1, 4)
+})
+right = pd.DataFrame({
+    'key1': ['one', 'one', 'two', 'two'],
+    'key2': ['a', 'a', 'a', 'b'],
+    'value2': np.arange(11, 15)
+})
 df = pd.merge(left, right, on=['key1', 'key2'], how='left')
-# df = pd.merge(left, right, on=['key1', 'key2'], how='left')
 print(left, end="\n\n")
 print(right, end="\n\n")
 print(df, end="\n\n")

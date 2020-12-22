@@ -1,4 +1,7 @@
 """
+se.plot(kind='hist', bins=3, grid=True)
+    在se的最小值和最大值之间，将se分成bins=3组
+
 本demo画出的是直方图和频率分布直方图不同
     本demo：y轴是数值
     频率分布直方图：y轴是频率/组距，参考:http://www.doc88.com/p-5028405822946.html
@@ -29,7 +32,7 @@ print(df)
 
 # se = pd.Series(np.random.randint(0, high=20, size=20))
 se = pd.Series([1, 2, 2, 3, 3, 3])
-print(se)
+print("\nse:\n", se)
 # se.hist(bins=3, grid=True)  # bins:分为几组, grid:是否有栅栏
-se.plot(kind='hist', bins=3, grid=True)
+se.plot(kind='hist', bins=3, grid=True)  # 最小值1到最大值3之间，分三组[1,1.66),[1.66,2.33),[2.33,3)
 plt.show()

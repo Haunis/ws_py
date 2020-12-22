@@ -1,7 +1,7 @@
 """
 np.tile(A, reps)
     一维数组直接重复几次,多维数组则横向重复
-    A: 要重复的narray
+    A: 要重复的ndarray
     reps: 表示重复次数
 
 另外还有narray.repeat(A, reps, axis = None)可进行重复扩张操作

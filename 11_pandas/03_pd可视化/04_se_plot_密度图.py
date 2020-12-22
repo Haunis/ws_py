@@ -11,8 +11,10 @@ se = pd.Series(np.arange(0, 10))
 print(se)
 # se.plot.kde()
 se.plot(kind='kde')
+
 # se.hist()
 se.plot(kind='hist', grid=True)
 # se.plot.bar( color='r', alpha=0.7)
+
 plt.xticks(np.arange(0, 11))
 plt.show()

@@ -11,7 +11,7 @@ import pandas as pd
 import numpy as np
 
 
-def f(x):  # series.map(f) 就是对series的每个元素进行操作
+def fun_split(x):  # series.map(f) 就是对series的每个元素进行操作
     return x.split('元')[0]  # 这里的操作是 将str切割并只取第一个元素,就是去掉'元'
 
 
@@ -23,10 +23,10 @@ def main():
     }
     df = pd.DataFrame(data)
     print(df)
-    df['price'] = df['price'].map(f)  # df['price']返回的是Series;
+    df['price'] = df['price'].map(fun_split)  # df['price']返回的是Series;
     print('修改后的数据表:\n', df)
 
-    print("\n-------------2.df.apply----------------")
+    print("\n-------------2.df.apply(np.fun)----------------")
     li = [x for x in range(9)]
     ret_ndarray = np.array(li).reshape(3, 3)
     df = pd.DataFrame(ret_ndarray, columns=['c1', 'c2', 'c3'], index=['app', 'win', 'mac'])
@@ -34,7 +34,7 @@ def main():
     df2 = df.apply(np.mean)  # np.mean是个函数; 默认是每一列的平均值
     print("\ndf.apply(np.mean):\n%s" % df2.__str__())
 
-    print("\n-------------3.df.applymap----------------")
+    print("\n-------------3.df.applymap()----------------")
     print("before:\n", df)
     # df2 = df.applymap(lambda x: '%.3f' % x)   # 保留小数点后三位
     df2 = df.applymap(lambda x: x * 2)  # 每个数乘以2
