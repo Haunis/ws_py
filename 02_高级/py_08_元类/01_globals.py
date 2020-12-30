@@ -17,6 +17,7 @@ class ccc(object):
         print("class ccc called")
 
 
+instance_c = ccc()
 ret = globals()
 print(ret)
 

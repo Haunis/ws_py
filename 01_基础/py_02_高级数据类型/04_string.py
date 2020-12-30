@@ -72,18 +72,27 @@ test_str4 = "   haha \t"
 print("test_str4:%s" % test_str4)
 print("test_str4.trip():%s" % (test_str4.strip()))
 
-print("-----------------------5.拆分和拼接字符串---------------------------")
+print("-----------------------5.字符串拆分---------------------------")
 origin_str = "静夜思\t 李白 \n 窗前明月光 疑似地上霜 \t 举头望明月 低头思故乡"
+print("origin_str:", origin_str)
 result_list = origin_str.split()  # 如果不传参数的话,默认使用所有空白空白符作为分隔符(\r,\t,\n 空格)
 # result_list = origin_str.splitlines() #按行切割
 print("result_list : %s" % result_list)
 
-result_join = "*".join(result_list)  # 使用*把列表中的元素拼接起来
+print("\n-----------------------6.字符串拼接---------------------------")
+str_list = ["i", "love", 'china']
+result_join = "*".join(str_list)  # 使用*把列表中的元素拼接起来
 print("result_join : %s" % result_join)
-temp_str = "abcd" + str(123)  # 字符串拼接
-print(temp_str)
 
-print("-----------------------6.字符串切片---------------------------")
+
+# 字符串只支持+ 和“×”的操作
+str1 = "abc"
+str2 = "def"
+print("str1+str2= ", (str1 + str2))
+
+print("str1*10 = ", str1 * 10)
+
+print("-----------------------7.字符串切片---------------------------")
 # 就是字符串的截取; 索引-1代表最后一个元素
 str_num = "0123456789"
 print("str_num[2:5] : %s" % str_num[2:5])  # 234, 包左不包右
@@ -97,13 +106,13 @@ print("str_num[-2:] : %s" % str_num[-2:])  # 89 末尾两个
 print("str_num[-1::-1] : %s" % str_num[-1::-1])  # 9876543210;从最后一个到最开始,步长为-1,实现字符串倒置
 print("str_num[::-1] : %s" % str_num[::-1])  # 9876543210;字符串倒置;可以省略开始和结尾
 
-print("-----------------------7.遍历字符串---------------------------")
+print("-----------------------8.遍历字符串---------------------------")
 # 字符串也可以遍历...
 str_origin = "abcde"
 for temp in str_origin:
     print(temp)
 
-print("-----------------------8.格式化---------------------------")
+print("-----------------------9.格式化---------------------------")
 a = "hello :%d" % 10
 print("a=", a)
 print("type(a):", type(a))

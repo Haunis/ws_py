@@ -122,7 +122,7 @@ while True:
         print("%s 有效" % temp_var)
 
 print("------------------11.分组（）-------------------------")
-#以邮箱为例，数字字母下划线开头4～20位，“@126.com”或者“@163.com”结尾
+# 以邮箱为例，数字字母下划线开头4～20位，“@126.com”或者“@163.com”结尾
 while True:
     temp_var = input("pleae input 126或者163邮箱(end结束):")
     if temp_var == "end":
@@ -131,12 +131,12 @@ while True:
     if ret is None:
         print("%s 无效" % temp_var)
     else:
-        print("%s 有效, group(1)=%s,group(2)=%s" % (temp_var,ret.group(1),ret.group(2)))
+        print("%s 有效, group(1)=%s,group(2)=%s" % (temp_var, ret.group(1), ret.group(2)))
 
 print("开始匹配html标签....")
-#检查标签开头和结尾是否相符
+# 检查标签开头和结尾是否相符
 html_str = "<body><h1>abcd</h1></body>"
 # regex = r"^<(\w*)><(\w*)>.*</\2></\1>$"
 regex = r"^<(?P<p1>\w*)><(?P<p2>\w*)>.*</(?P=p2)></(?P=p1)>$"
-ret = re.match(regex,html_str)
+ret = re.match(regex, html_str)
 print(ret.group())
