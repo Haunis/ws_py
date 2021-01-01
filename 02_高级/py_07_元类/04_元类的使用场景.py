@@ -29,4 +29,4 @@ print(hasattr(Foo, 'bar'))  # False
 print(hasattr(Foo, 'BAR'))  # True
 
 f = Foo()
-print(f.BAR)
+print(f.BAR)  # bip
