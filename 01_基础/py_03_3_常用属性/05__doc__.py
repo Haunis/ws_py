@@ -1,5 +1,5 @@
 class Foo:
-    """ 描述类信息，这是用于看片的神奇 """
+    """ 描述类信息，这是Foo类"""
 
     def func(self):
         pass
