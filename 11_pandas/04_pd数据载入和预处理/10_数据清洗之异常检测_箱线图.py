@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-df = pd.DataFrame(np.arange(20), columns=['W'])
-df['Y'] = df['W'] * 1.5 + 2  # 增加一列
+df = pd.DataFrame(np.arange(20), columns=['X'])
+df['Y'] = df['X'] * 1.5 + 2  # 增加一列
 df.iloc[3, 1] = 128  # 第3行,第1列元素
 df.iloc[18, 1] = 150
 print(df)

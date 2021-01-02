@@ -37,11 +37,11 @@ print("\n------------2.等频法离散化连续型数据---------------")
 def SameRateCut(data, k):
     k = 3
     w = data.quantile(np.arange(0, 1 + 1.0 / k, 1.0 / k)) #series
-    print(w)
+    print("原始数据：\n%s"%w.__str__())
     data = pd.cut(data, w)
     return data
 
 
 result = SameRateCut(pd.Series(na), 3)
 ret = result.value_counts()
-print(ret)
+print("\n切割后：\n%s"%ret.__str__())

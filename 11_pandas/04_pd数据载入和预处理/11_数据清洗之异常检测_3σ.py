@@ -8,11 +8,11 @@
 import pandas as pd
 import numpy as np
 
-df = pd.DataFrame(np.arange(20), columns=['W'])
-df['Y'] = df['W'] * 1.5 + 2  # 增加一列
+df = pd.DataFrame(np.arange(20), columns=['X'])
+df['Y'] = df['X'] * 1.5 + 2  # 增加一列
 df.iloc[3, 1] = 128  # 第3行,第1列元素
 df.iloc[18, 1] = 150
-
+print(df)
 
 def outRange(S):
     # 平均值的偏差超过3倍标准差的
@@ -26,4 +26,4 @@ def outRange(S):
 
 
 outier = outRange(df['Y'])  # 返回Series
-print(outier)
+print("\noutier:\n%s"%outier.__str__())

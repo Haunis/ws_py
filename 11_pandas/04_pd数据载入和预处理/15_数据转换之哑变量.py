@@ -29,7 +29,9 @@ df = pd.DataFrame([
     ['red', 'L', 13.5, 'class2'],
     ['blue', 'XL', 15.3, 'class1']])
 
-df.columns = ['color', 'size', 'prize', 'class label']
-print(df, end="\n\n")
-ret_df = pd.get_dummies(df, columns=['color'])  # DataFrame;不指定columns的话，默认对所有非int变量进行哑变量处理
+df.columns = ['color', 'size', 'prize', 'class_label']
+print("原df:\n%s"%df.__str__(), end="\n\n")
+
+# DataFrame;不指定columns的话，默认对所有非int变量进行哑变量处理
+ret_df = pd.get_dummies(df, columns=['color'])  
 print(ret_df)

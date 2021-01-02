@@ -40,6 +40,12 @@ print('按列汇总:\n%s' % ret.__str__())
 ret = df.sum(axis=1)  # Series; 字符串不参与运算，数值相继爱
 print('\n按行汇总:\n%s' % ret.__str__())
 
+print("\n----------------2.df.mean()-----------------")
+ret_se = df.mean() #Series
+print(ret_se)
+
 print("\n----------------2.df.describe()-----------------")
 ret = df.describe()  # 返回DataFrame; 对每个数值型的[列]数据进行统计
 print(ret)
+
+
