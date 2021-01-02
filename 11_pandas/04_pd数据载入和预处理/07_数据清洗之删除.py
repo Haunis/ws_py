@@ -24,9 +24,9 @@ print(se.dropna())
 print("\n--------------2.se[bool_se]----------------\n")
 # 布尔型索引选择过滤非缺失值
 not_null = se.notnull()
-print(type(not_null))
-print(not_null)
-print(se[not_null])
+print(type(not_null)) #Series
+print("not_null:\n",not_null)
+print("\nse[not_null]:\n",se[not_null])
 
 print("\n--------------3.df.dropna()----------------\n")
 data = pd.DataFrame([[1., 5.5, 3.],
@@ -35,7 +35,8 @@ data = pd.DataFrame([[1., 5.5, 3.],
                      [NA, 5.5, 3.]])
 print(data)
 cleaned = data.dropna()
-print('删除缺失值后的：\n', cleaned)
+print('\n删除缺失值后：')
+print(cleaned)
 
 print("\n--------------4.df.dropna(how='all')----------------\n")
 data = pd.DataFrame([[1., 5.5, 3.],
@@ -51,6 +52,7 @@ data = pd.DataFrame([[1., 5.5, NA],
                      [1., NA, NA],
                      [NA, NA, NA],
                      [NA, 5.5, NA]])
+print("data:\n%s"%data.__str__())
 ret = data.dropna(axis=1, how='all')
 print(ret)
 

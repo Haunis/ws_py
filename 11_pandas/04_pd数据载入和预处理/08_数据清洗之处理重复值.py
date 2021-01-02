@@ -21,7 +21,7 @@ ret = data.duplicated()
 print(ret, end="\n\n")
 
 print("\n-------------2.删除重复行------------------")
-ret_df = data.drop_duplicates()  # 删除重复行
+ret_df = data.drop_duplicates()  # 比较一行的所有内容，删除后面的重复行
 print(ret_df)
 
 print("\n-------------3.指定列重复时,删除重复行------------------")
