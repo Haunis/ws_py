@@ -12,5 +12,6 @@ ax.plot(np.random.randn(30).cumsum(), color='#ff0000', linestyle='dashed', marke
 ax.plot(np.random.randn(30).cumsum(), color='g', linestyle='dashed', marker='+', label='two')
 ax.plot(np.random.randn(30).cumsum(), color='b', linestyle='dashed', marker='v', label='three')
 ax.set_xticks([0, 5, 10, 15, 20, 25, 30, 40])
-ax.legend(loc='best')
+plt.legend(loc='upper left')
+# ax.legend(loc='best')
 plt.show()

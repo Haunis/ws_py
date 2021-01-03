@@ -27,7 +27,16 @@ matplotlib相关函数:
    scatter（）：做一个X和Y的散点图，其中X和Y是相同长度的序列对象
    stackplot（）：绘制一个堆叠面积图
    acorr（）：绘制X的自相关函数
-    annotate（）：用箭头在指定的数据点创建一个注释或一段文本
+   annotate（）：用箭头在指定的数据点创建一个注释或一段文本
    bar（）：绘制垂直条形图		 barh（）：绘制横向条形图
    barbs（）：绘制一个倒钩的二维场
+
+plt.plot(data, data ** 2)  
+
+fig = plt.figure() # 创建一个空白画布,可以指定画布大小，像素。
+ax1 = fig.add_subplot(2, 2, 1) 
+ax1.plot(pd.Series(np.arange(0, 2)))
+
+fig, axes = plt.subplots(2, 3)
+axes[1][2].plot([1, 2, 3, 4])
 

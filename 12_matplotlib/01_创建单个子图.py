@@ -5,11 +5,12 @@
 import matplotlib.pyplot as plt
 import matplotlib as plt_lib
 
-print(plt_lib.matplotlib_fname())  # 查看配置文件目录
+print("matplotlib文件目录：",plt_lib.matplotlib_fname())  # 查看配置文件目录
 
-fig = plt.figure()  # 创建一个空白画布，可以指定画布大小，像素。
+fig = plt.figure()  # 返回Figure; 创建一个空白画布，可以指定画布大小，像素。
 # 不能使用空白的figure绘图，需要创建子图
-ax1 = fig.add_subplot(2, 2, 1)  # 创建并选中子图，可以指定子图的行数，列数，与选中图片编号。
-ax2 = fig.add_subplot(2, 2, 2)  # 返回AxesSubplot
+ax1 = fig.add_subplot(2, 2, 1)  # 返回AxesSubplot;创建并选中子图，可以指定子图的行数，列数，与选中图片编号。
+ax2 = fig.add_subplot(2, 2, 2)  
 ax3 = fig.add_subplot(2, 2, 3)
 plt.show()
+

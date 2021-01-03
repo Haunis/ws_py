@@ -41,10 +41,11 @@ def main():
     x1 = np.arange(0.0, 4.0, 0.5)
     x2 = np.arange(0.0, 4.0, 0.01)
     plt.figure(1)
-    plt.subplot(2, 2, 1)
+    plt.subplot(2, 2, 1) #第一张图
     plt.plot(x1, test_fun(x1), 'bo ', x2, test_fun(x2), 'k')
     plt.title('子图1')
-    plt.subplot(2, 2, 2)
+
+    plt.subplot(2, 2, 2) #第二张图
     plt.plot(np.cos(2 * np.pi * x2), 'r--')
     plt.title('sub_2')
     plt.show()
