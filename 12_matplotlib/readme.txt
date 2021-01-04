@@ -5,6 +5,22 @@ Matplotlib 是一个在 python 下实现的类 matlab 的纯 python 的第三方
 Pyplot提供了一套和Matlab类似的绘图API，使得Matplotlib的机制更像Matlab
 在Jupyter notebook中进行交互式绘图，需要执行一下语句： % matplotlib notebook或者  %matplotlib inline
 
+-------------------------------------------------
+1.创建画布:
+    非必须,不创建的话默认使用同一个
+    plt.figure(num)   num: 不指定的话就自动增长，从1～N 相当于画布的id
+
+2.在画布上添加子图:
+    ax1 = fig.add_subplot(2, 2, 1) #注意subplot()从1开始
+    ax = plt.subplot(2,2,1)
+    fig, axes = plt.subplots(2, 3) #注意axes[index]从0开始
+
+3.绘制曲线:
+    ax1.plot(pd.Series(np.arange(0, 2)))
+    axes[1][2].plot([1, 2, 3, 4])
+    axes[1,2].plot([1, 2, 3, 4])
+
+-------------------------------------------------
 matplotlib相关函数:
    figure（）：创建一个新的绘图窗口。
    figtext（）：为figure添加文字
@@ -31,12 +47,4 @@ matplotlib相关函数:
    bar（）：绘制垂直条形图		 barh（）：绘制横向条形图
    barbs（）：绘制一个倒钩的二维场
 
-plt.plot(data, data ** 2)  
-
-fig = plt.figure() # 创建一个空白画布,可以指定画布大小，像素。
-ax1 = fig.add_subplot(2, 2, 1) 
-ax1.plot(pd.Series(np.arange(0, 2)))
-
-fig, axes = plt.subplots(2, 3)
-axes[1][2].plot([1, 2, 3, 4])
 

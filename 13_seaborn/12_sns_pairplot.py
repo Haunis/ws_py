@@ -16,9 +16,10 @@ import seaborn as sns
 import numpy as np
 
 # df_iris = pd.read_csv('./iris.csv')
+
 df_iris = pd.DataFrame()
-df_iris['Sepal.Length']=np.arange(1,10)
-df_iris['Petal.Length']=np.arange(11,20)
+df_iris['Sepal.Length'] = np.arange(1, 10)
+df_iris['Petal.Length'] = np.arange(11, 20)
 
 sns.set(style="ticks")
 g = sns.pairplot(df_iris, vars=['Sepal.Length', 'Petal.Length'])

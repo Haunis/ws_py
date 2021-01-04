@@ -35,11 +35,11 @@ plt.xlabel('X')  # x轴标签
 plt.ylabel('Y')
 plt.xlim(0, 1)  # 范围
 plt.ylim(0, 1)  # 范围
-plt.xticks([0, 0.2, 0.4, 0.6, 0.8, 1]) # x轴刻度的数目与取值。
+plt.xticks([0, 0.2, 0.4, 0.6, 0.8, 1])  # x轴刻度的数目与取值。
 plt.yticks([0, 0.2, 0.4, 0.6, 0.8, 1])
 plt.tick_params(labelsize=22)  # 显示的xticks,yticks字体大小
-plt.plot(data, data ** 2)  # 绘制第一个图
-plt.plot(data, data ** 3)  # 绘制第二个图
-plt.plot(data, data) #绘制第三个图
-plt.legend(['y = x^2', 'y = x^3','y = x'],loc='lower right') #指定当前图形的图例
+plt.plot(data, data ** 2)  # 绘制第一个曲线
+plt.plot(data, data ** 3)  # 绘制第二个曲线
+plt.plot(data, data)  # 绘制第三个曲线
+plt.legend(['y = x^2', 'y = x^3', 'y = x'], loc='lower right')  # 指定当前图形的图例
 plt.show()

@@ -2,7 +2,7 @@
 se.plot(kind='hist', bins=3, grid=True)
     在se的最小值和最大值之间，将se分成bins=3组
 
-本demo画出的是直方图和频率分布直方图不同
+本demo画出的直方图和频率分布直方图不同
     本demo：y轴是数值
     频率分布直方图：y轴是频率/组距，参考:http://www.doc88.com/p-5028405822946.html
 
