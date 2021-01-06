@@ -26,7 +26,7 @@ def main():
     # 3.执行sql语句
     count = cur.execute("select * from goods")
     print("count:", count)
-    one_data = cur.fetchone()  # 值取第一行，是个元组
+    one_data = cur.fetchone()  # 只取第一行，是个元组
     many_data = cur.fetchmany(3)  # 接着取3行;元组里放3个元组
     all_data = cur.fetchall()  # 取剩下的全部；all_data是一个元组，元组里每个item也是元组
 

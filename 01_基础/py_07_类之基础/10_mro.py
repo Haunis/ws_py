@@ -6,6 +6,9 @@ __mro__:
     是python解释器自己的c3算法决定的,c3算法保证每个继承链上的类只被调用一次
 
 调用方法时,使用默认的类或者指定的类去mro里找该类的位置,找到后调用该类后面类的方法
+    如Zi.__mro__ 是 (<class '__main__.Zi'>, <class '__main__.Fu1'>, <class '__main__.Fu2'>....
+    Zi的后面是Fu1则调用Fu1里的方法
+
 使用默认的类去mro里寻找:
     super().fun()--默认使用当前类
     zi.fun()--如果Zi没定义fun(),默认使用Zi去Zi的mro里寻找
