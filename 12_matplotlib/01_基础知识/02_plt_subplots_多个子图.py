@@ -4,6 +4,7 @@
 import matplotlib.pyplot as plt
 
 # 创建1个figure,里面有2*3个子图
+# fig, [ax1,ax2,ax3] = plt.subplots(2, 3) #可以用[ax1,ax2,ax3] 接收
 fig, axes = plt.subplots(2, 3)  # axes是二维ndarray;
 print(axes.shape)  # (2,3)即2行3列的数组
 

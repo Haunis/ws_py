@@ -26,7 +26,8 @@ pyplot使用rc配置文件来自定义图形的各种默认属性，被称为rc�
 
 
 ###############rc设置方法################
-plt.plot(*args,color='r',linestyle='dashed', marker='o', label='one')
+plt.plot(*args, color='r',linestyle='dashed', marker='o', label='one')
+    color: r,g,b,"#ff0000"
     lines.linewidth:线条宽度	取0-10之间的数值，默认为1.5。
     lines.linestyle:线条样式	可取“-”“--”“-.”“：”四种。默认为“-”。
                 - : 实线
@@ -70,8 +71,8 @@ def main():
     print("rc文件路径: ", plt_lib.matplotlib_fname())  # 查看rc文件路径
     # print(plt_lib.rc_params())  # 查看rc参数
     fig, axes = plt.subplots()
-    # 配置中文显示
-    plt.rcParams['font.family'] = ['SimHei']
+
+    plt.rcParams['font.family'] = ['SimHei']  # 配置中文显示
     plt.rcParams['axes.unicode_minus'] = False
 
     x1 = np.arange(0.0, 4.0, 0.5)

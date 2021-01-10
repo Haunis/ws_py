@@ -12,14 +12,25 @@ plt.plot(x,y,color,linestyle,marker,alpha)
 import numpy as np
 import matplotlib.pyplot as plt
 
-#
+plt.rcParams['font.family'] = ['SimHei']  # 配置中文显示
+plt.rcParams['axes.unicode_minus'] = False
+
 x1 = np.arange(0, 30)
 
-# plt.plot(x1, x1 * 2, 'o',color ='b')#蓝色,只画点
-# plt.plot(x1, x1 * 2, 'bo')  # 蓝色,只画点;和上述方法一样
+plt.subplot(4, 1, 1)
+plt.plot(x1, x1 * 2, 'o')  # 只画点
+plt.title("只画点")
 
-# plt.plot(x1, x1 * 2, 'b')  # 蓝色,只画线
+plt.subplot(4, 1, 2)
+plt.plot(x1, x1 * 2)  # 只画线
+plt.title("只画线")
 
-plt.plot(x1, x1 * 2, 'b', marker='o')  # 画点且画线
+plt.subplot(4, 1, 3)
+plt.plot(x1, x1 * 2, marker='o')  # 画点和线
+plt.title("画点和线")
+
+plt.subplot(4, 1, 4)
+plt.plot(x1, x1 * 2, color='r', marker='o')  # 画点和线
+plt.title("画点和线,指定颜色")
 
 plt.show()
