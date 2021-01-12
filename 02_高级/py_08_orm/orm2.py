@@ -1,5 +1,8 @@
 """
 在元类里指定表名,字段名
+
+type(arg1, arg2, arg3) 返回type类
+type.__new__(cls,arg1,arg2,arg3) 返回cls的实例
 """
 
 
@@ -12,8 +15,11 @@ class ModelMetaClass(type):
     """
 
     def __new__(cls, class_name, class_parents, class_attr):
+        print("class_name:", class_name)
+        print("class_parents:", class_parents)
+        print("class_attr: ", class_attr)
+
         __mappings__ = dict()
-        print("class_attr:", class_attr)
         for k, v in class_attr.items():
             if isinstance(v, tuple):  # 只将uid,name,email,pwd添加进__mappings__里
                 __mappings__[k] = v
@@ -22,23 +28,17 @@ class ModelMetaClass(type):
 
         for k in __mappings__:  # 将类属性uid,email,pwd删除
             class_attr.pop(k)
-        # return type(class_name, class_parents, class_attr)  # 创建类
-        return type.__new__(cls, class_name, class_parents, class_attr)  # 创建类
+
+        # 用type(...)返回的type去生成Model类
+        # ret = type(class_name, class_parents, class_attr)  # <class 'type'>
+        # 用ModelMetaClass去生成Model类
+        ret = type.__new__(cls, class_name, class_parents, class_attr)  # <class '__main__.ModelMetaClass'>; 调用父类方法
+        print("ret >>>>>>: ", type(ret))
+        print("************************************")
+        return ret
 
 
-class User(object, metaclass=ModelMetaClass):
-    uid = ('f_uid', 'int unsigned')  # f_uid是保存在数据库中的字段名
-    name = ('f_name', 'varchar(30)')
-    email = ('f_email', 'varchar(30)')
-    pwd = ('f_pwd', 'varchar(30)')
-
-    # __mappings__ = {
-    #     'uid': ('f_uid', 'int unsigned')
-    #     'name': ('f_name', 'varchar(30)')
-    #     'email': ('f_email', 'varchar(30)')
-    #     'pwd ': ('f_pwd', 'varchar(30)')
-    # }
-    # __table__='User'
+class Model(object, metaclass=ModelMetaClass):
     def __init__(self, **kwargs):
         for k, v in kwargs.items():
             setattr(self, k, v)
@@ -70,7 +70,28 @@ class User(object, metaclass=ModelMetaClass):
         print("sql : ", sql)
 
 
+class User(Model):
+    # uid = IntegerField("uid")
+    uid = ('f_uid', 'int unsigned')  # f_uid是保存在数据库中的字段名
+    name = ('f_name', 'varchar(30)')
+    email = ('f_email', 'varchar(30)')
+    pwd = ('f_pwd', 'varchar(30)')
+
+    # __mappings__ = {
+    #     'uid': ('f_uid', 'int unsigned')
+    #     'name': ('f_name', 'varchar(30)')
+    #     'email': ('f_email', 'varchar(30)')
+    #     'pwd ': ('f_pwd', 'varchar(30)')
+    # }
+    # __table__='User'
+
+
 if __name__ == "__main__":
     # print(User.__dict__)
     user = User(uid=1234, name='lee', email='123@126.com', pwd='pwd1111')
     user.save()
+
+    print("\n\n\n")
+    print("", user.__class__)
+    print("", user.__class__.__class__)
+    print("", user.__class__.__class__.__class__)

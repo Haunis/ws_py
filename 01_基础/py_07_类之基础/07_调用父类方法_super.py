@@ -1,4 +1,8 @@
 """
+python中调用父类方法:
+    方式1: super().fuFunction() #使用当前的类到mro里去寻找,调用其下一个类的方法
+    方式2: super(Zi,self).__init()__ #使用指定的Zi到mro里去寻找,调用其下一个类的方法
+    方式3: Fu.fun(self);方法是在python2.x调用父类方法,python3.x不推荐使用
 
 和java里super稍有不同
 java super:
@@ -9,10 +13,6 @@ python super:
     super并不是单纯地调用父类,其调用链由mro决定,所以多继承时,super可能调用不到所有父类
     当然,如果是单继承,super()一定调用其父类
 
-python中调用父类方法:
-    方式1: super().fuFunction() #使用当前的类到mro里去寻找,调用其下一个类的方法
-    方式2: super(Zi,self).__init()__ #使用指定的Zi到mro里去寻找,调用其下一个类的方法
-    方式3: Fu.fun(self);方法是在python2.x调用父类方法,python3.x不推荐使用
 
 """
 
@@ -22,7 +22,7 @@ class Animal:
         print("Animal init")
 
     def run(self):
-        print("animal run %s" % str(self))  # 子类调用的话,self就是子类
+        print("animal run self= %s" % str(self))  # 子类调用的话,self就是子类
 
 
 class Dog(Animal):
@@ -32,12 +32,12 @@ class Dog(Animal):
         # super(Dog, self).__init__()
         # Animal.__init__(self)
 
-    def run(self):
-        print("override Animal run")
+    def run(self):  # 重写父类方法
+        print("dog run")
 
-    def dog_run(self):
+    def dog_func(self):
         super().run()  # 调用父类方法--方式1
-        super(Dog, self).run()  # 调用父类方法--方式2；
+        super(Dog, self).run()  # 调用父类方法--方式2；使用Dog到mro里去寻找
         Animal.run(self)  # 调用父类方法--方式3;    python2.x调用方式
 
         # Dog.dog_run(self)  # 递归调用子类自己的方法,会形成死循环
@@ -45,4 +45,7 @@ class Dog(Animal):
 
 
 dog = Dog()  # 默认会调用父类__init__方法;如果子类重写了__init__,则调用子类的
-dog.dog_run()
+
+
+print("\n----------------调用父类方法的三种方式-----------------")
+dog.dog_func()

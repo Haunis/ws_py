@@ -5,6 +5,9 @@
 
 
 class UpperMetaClass(type):
+    # class_name: str类型，类的名称
+    # class_parents: 元组， 父类
+    # class_attr: 字典，类属性，类方法，实例方法
     def __new__(cls, class_name, class_parents, class_attr):
         new_attr = {}
         for name, value in class_attr.items():
@@ -12,7 +15,8 @@ class UpperMetaClass(type):
                 new_attr[name.upper()] = value
 
         # 调用type来创建一个类
-        return type(class_name, class_parents, new_attr)
+        # return type(class_name, class_parents, new_attr)
+        return type.__new__(cls, class_name, class_parents, new_attr)
 
 
 def upper_attr(class_name, class_parents, class_attr):
