@@ -45,7 +45,12 @@ $   --判断到结尾；就是说要把需要的判断的字符串匹配到结�
 
 re.match(r"[a-zA-Z]{3}","abc").group(); 从头开始匹配，取出匹配结果
 
-
+贪婪和非贪婪:
+    参考: https://www.cnblogs.com/austinjoe/p/9492790.html
+    贪婪: .*
+        匹配越多越好,python默认是贪婪的
+    非贪婪:.*?,  \w*? 等等
+        匹配到越少越好
 """
 
 import re
@@ -100,20 +105,21 @@ print(ret)
 print("------------------9.判断输入的变量名是否有效-------------------------")
 # 有效的变量名：非数字开头的数字字母下划线
 while True:
-    temp_var = input("pleae input 变量名(end结束):")
-    if temp_var == "end":
+    temp_var = input("pleae input 变量名(end或回车结束):")
+    print("temp_var>>>", temp_var)
+    if temp_var == "end" or temp_var == "":  # 空的字符串,代表回车
         break
     ret = re.match(r"^[a-zA-Z_]+[a-zA-Z0-9_]*$", temp_var)  # 字母或下划线开头，后面跟数字字母下划线
     if ret is None:
-        print("%s 无效" % temp_var)
+        print(">>>%s<<< 无效" % temp_var)
     else:
-        print("%s 有效" % temp_var)
+        print(">>>%s<<< 有效" % temp_var)
 
 print("------------------10.判断邮箱-------------------------")
 # 邮箱要求：数字字母下划线开头，4～20位 "@126.com"结尾
 while True:
-    temp_var = input("pleae input 邮箱(end结束):")
-    if temp_var == "end":
+    temp_var = input("pleae input 邮箱(end或回车结束):")
+    if temp_var == "end" or temp_var == '':  # 空字符串代表回车
         break
     ret = re.match(r"^[a-zA-Z0-9_]{4,20}@126\.com$", temp_var)
     if ret is None:
@@ -124,8 +130,8 @@ while True:
 print("------------------11.分组（）-------------------------")
 # 以邮箱为例，数字字母下划线开头4～20位，“@126.com”或者“@163.com”结尾
 while True:
-    temp_var = input("pleae input 126或者163邮箱(end结束):")
-    if temp_var == "end":
+    temp_var = input("pleae input 126或者163邮箱(end或回车结束):")
+    if temp_var == "end" or temp_var == "":  # 空字符串代表回车
         break
     ret = re.match(r"^([a-zA-Z0-9_]{4,20})@(126|163)\.com$", temp_var)
     if ret is None:
@@ -140,3 +146,11 @@ html_str = "<body><h1>abcd</h1></body>"
 regex = r"^<(?P<p1>\w*)><(?P<p2>\w*)>.*</(?P=p2)></(?P=p1)>$"
 ret = re.match(regex, html_str)
 print(ret.group())
+
+print("------------------12.贪婪和非贪婪-------------------------")
+s = "<abcd>"
+print("原始字符串:", s)
+ret = re.match(r"<\w*", s).group()
+print("贪婪:", ret)
+ret = re.match(r"<\w*?", s).group()
+print("非贪婪:", ret)
