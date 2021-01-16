@@ -49,7 +49,7 @@ tolerance = 0.001
 
 # 采用逼近法求取特定x坐标对应的t
 def get_t_from_x(x):
-    t = 0;
+    t = 0
     diff = x - get_bezier_x(t)
     while abs(diff) > tolerance:
         t = t + 1 / 4096
