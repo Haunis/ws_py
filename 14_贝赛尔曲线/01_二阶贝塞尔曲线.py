@@ -62,6 +62,7 @@ if __name__ == "__main__":
     # axes[0, 1].plot(se, se_y)
     # axes[1, 0].plot(se_x, se_y)
 
+    print("-----------------1.x = x(t)------------------")
     plt.rcParams['font.family'] = ['SimHei']  # 中文显示
     plt.subplot(2, 2, 1)
     plt.plot(se, se_x)  # x关于t的曲线
@@ -69,18 +70,21 @@ if __name__ == "__main__":
     plt.xlim(0, 1)  # 范围
     plt.ylim(0, 1)  # 范围
 
+    print("-----------------2. y = y(t)------------------")
     plt.subplot(2, 2, 2)
     plt.plot(se, se_y)  # y关于t的曲线
     plt.title('y = y(t)')
     plt.xlim(0, 1)  # 范围
     plt.ylim(0, 1)  # 范围
 
+    print("-----------------3.1. y = f(x)------------------")
     plt.subplot(2, 2, 3)
     plt.plot(se_x, se_y, marker='o')  # y关于x的曲线
     plt.title('y = f(x)')
     # plt.xlim(0, 1)  # 范围
     plt.ylim(0, 1)  # 范围
 
+    print("-----------------3.2. y = f(x)------------------")
     plt.subplot(2, 2, 4)
     se_t = se.map(get_t_from_x)  # 这里将se看做x序列,返回对应t序列
     se_t_y = se_t.map(get_bezier_y)  # 拿到x对应的t后,获取此时的y
