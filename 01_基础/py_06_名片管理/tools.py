@@ -78,7 +78,7 @@ def is_exist_name(name):
     for card in card_list:
         if card["name"] == name:
             exist = True
-            break;
+            break
     return exist
 
 

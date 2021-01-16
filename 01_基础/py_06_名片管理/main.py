@@ -2,7 +2,7 @@
 主要是高级数据类型 列表,元组,字典的使用演练
 
 """
-from py_06_名片管理 import tools
+import tools
 
 """
 pass作用: 占位符if判断里若没有具体代码实现是使用pass,否则编译不过 
@@ -29,4 +29,5 @@ def do_with_input():
         do_with_input()
 
 
-do_with_input()
+if __name__ == "__main__":
+    do_with_input()
