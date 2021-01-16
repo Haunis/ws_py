@@ -1,6 +1,7 @@
-Matplotlib 是一个在 python 下实现的类 matlab 的纯 python 的第三方库,旨在用 python实现 matlab 的功能,
-是python下最出色的绘图库。其风格跟 matlab 相似，同时也继承了 python 的简单明了。
-要使用matplotlib得先安装 numpy 库 (一个python下数组处理的第三方库，可以很方便的处理矩阵，数组) 。
+Matplotlib简介：
+    Matplotlib是一个在python下实现的类matlab的纯python的第三方库,旨在用python实现 matlab 的功能
+    其风格跟matlab相似，同时也继承了python的简单明了。
+    要使用matplotlib得先安装numpy库 (一个python下数组处理的第三方库，可以很方便的处理矩阵，数组) 。
 
 Pyplot提供了一套和Matlab类似的绘图API，使得Matplotlib的机制更像Matlab
 在Jupyter notebook中进行交互式绘图，需要执行一下语句： % matplotlib notebook或者  %matplotlib inline
@@ -9,14 +10,17 @@ Pyplot提供了一套和Matlab类似的绘图API，使得Matplotlib的机制更�
 1.创建画布:
     非必须,不创建的话默认使用同一个
     plt.figure(num)   num: 不指定的话就自动增长，从1～N 相当于画布的id
+    fig, axes = plt.subplots(2, 3) 创建新的画布，并返回新的子图
 
 2.在画布上添加子图:
-    ax1 = fig.add_subplot(2, 2, 1) #注意subplot()从1开始
+    ax = fig.add_subplot(2, 2, 1) #注意subplot()从1开始
     ax = plt.subplot(2,2,1)
     fig, axes = plt.subplots(2, 3) #注意axes[index]从0开始
 
 3.绘制曲线:
-    ax1.plot(pd.Series(np.arange(0, 2)))
+    plt.subplot(2,2,1)
+    ax.plot(pd.Series(np.arange(0, 2)))
+
     axes[1][2].plot([1, 2, 3, 4])
     axes[1,2].plot([1, 2, 3, 4])
 

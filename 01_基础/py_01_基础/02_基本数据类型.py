@@ -9,9 +9,9 @@
 
 非数字类型：字符串，列表，元组，字典
 """
-age = 18#int
+age = 18  # int
 
-height = 1.75# 2.float
+height = 1.75  # 2.float
 
 isMale = True  # 3.bool类型
 

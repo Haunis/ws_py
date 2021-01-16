@@ -41,7 +41,7 @@ def sin_plot(flip=2):
     plt.show()
 
 
-# sns.set()  # seaborn默认的绘图设置
+sns.set()  # seaborn默认的绘图设置
 # sns.set(style='darkgrid', font_scale=1.5)  # 设置黑色格子
 
 sin_plot()
