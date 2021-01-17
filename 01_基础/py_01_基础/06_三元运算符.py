@@ -1,6 +1,6 @@
 """
-python里没有像java里的三元表达式，不能忍。。没有怎么装b
-java里的三元表达式： a = a>b?a:b
+python里没有像c++，java里的三元表达式，不能忍。。没有怎么装b
+c++,java里的三元表达式： a = a > b? a:b
 
 不过python里可以有类似的表达： a = a if a>b else b
 
