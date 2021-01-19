@@ -10,15 +10,30 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-sns.set_style("whitegrid")
 
-# df_iris = pd.read_csv('./iris.csv')
-df_iris = pd.DataFrame()
-# df_iris['Sepal.Length'] = np.arange(1, 10)
-# df_iris['Petal.Length'] = np.arange(11, 20)
-df_iris['Sepal.Length'] = np.random.randn(20)
-df_iris['Petal.Length'] = np.random.randn(20)
+def gen_norm_data():
+    data = list()
+    for i in range(1, 21, 1):
+        num = i if i < 10 else 21 - i
+        for j in range(1, num + 1, 1):
+            data.append(i)
+    return data
 
 
-ax = sns.violinplot(x=df_iris['Petal.Length'])
-plt.show()
+if __name__ == "__main__":
+    sns.set_style("whitegrid")
+
+    # df_iris = pd.read_csv('./iris.csv')
+
+    df_iris = pd.DataFrame()
+    # df_iris['Sepal.Length'] = np.random.randn(20)
+    # df_iris['Petal.Length'] = np.random.randn(20)
+
+    # df_iris['Sepal.Length'] = gen_norm_data()
+    # df_iris['Petal.Length'] = gen_norm_data()
+
+    df_iris['Sepal.Length'] = np.arange(1, 10)
+    df_iris['Petal.Length'] = np.arange(1, 10)
+
+    ax = sns.violinplot(x=df_iris['Petal.Length'])
+    plt.show()

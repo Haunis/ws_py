@@ -33,7 +33,7 @@ print(df)
 
 print("\n---------1.选取1列数据---------------")
 se = df['name']  # 一列是Series
-print("df['name']:\n%s"%se.__str__())
+print("df['name']:\n%s" % se.__str__())
 
 print("\n---------2.选取2列数据---------------")
 w2 = df[['name', 'year']]  # 多列就是DataFrame
@@ -84,3 +84,9 @@ se = df['year'] == 2001  # 返回Series
 print(se, end="\n\n")
 df2 = df[se]  # 选取True的那一行
 print(df2)
+
+print("\n---------9.选取某个数据---------------")
+print(df)
+print(df['year'][0])
+print(df.iloc[0, :][2])
+print(df.iloc[:, 2][0])

@@ -1,5 +1,6 @@
 """
-sns.regplot():绘制回归图,揭示两个变量间的线性关系
+sns.regplot()
+    绘制回归图,揭示两个变量间的线性关系
 """
 import pandas as pd
 import numpy as np
