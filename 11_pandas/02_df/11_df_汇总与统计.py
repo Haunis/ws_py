@@ -33,6 +33,11 @@ data = {
 df = pd.DataFrame(data)
 print(df)
 
+print('+++++++++++++')
+print("多少行:len(df)= ", len(df))  # 求出一共多少行
+print("多少列: df.columns.size=", df.columns.size)  # 求出一共多少列
+print('+++++++++++++')
+
 print("\n----------------1.df.sum()-----------------")
 ret = df.sum()  # 返回Series; 如果某一列是string的话，则是各个字符串拼接
 print('按列汇总:\n%s' % ret.__str__())
@@ -41,11 +46,9 @@ ret = df.sum(axis=1)  # Series; 字符串不参与运算，数值相继爱
 print('\n按行汇总:\n%s' % ret.__str__())
 
 print("\n----------------2.df.mean()-----------------")
-ret_se = df.mean() #Series
+ret_se = df.mean()  # Series
 print(ret_se)
 
 print("\n----------------2.df.describe()-----------------")
 ret = df.describe()  # 返回DataFrame; 对每个数值型的[列]数据进行统计
 print(ret)
-
-

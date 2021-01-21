@@ -7,6 +7,7 @@ DataFrame数据查询和编辑:
     sample（n）#随机抽取n行显示
 
     df['name'] #获取columns为'name'的这一列数据
+    df[0:2] #获取前两行数据
     df[:2] #获取前两行数据
 
 DataFrame.loc(arg1，arg2)
@@ -40,13 +41,14 @@ w2 = df[['name', 'year']]  # 多列就是DataFrame
 print(w2)
 
 print("\n---------3.选取前两行, df[:2]---------------")
-# print(df[:2,]) #error,不能向numpy一样取数据,ndarray[:2, ]这样ok
+# print(df[:2, ])  # error,不能像numpy一样取数据，df不带逗号; ndarray取数据ndarray[:2, ]
 # print(df[0]) #error
+
 # print(df[0:2])#ok，也是前两行
 print(df[:2])
 
 print("\n---------4.显示2,3两行, df[1:3]---------------")
-print(df[1:3])
+print(df[1:3])  # 第1,2行;包左不包右
 
 print("\n---------5.df.head()---------------")
 print(df.head())  # 默认选取前5行数据
@@ -63,7 +65,8 @@ print(df.iloc[:, 3])  # 返回Series,显示第3列
 
 print("\n---------7.2 iloc之查询多列---------------")
 print("df.iloc[:, [1, 3]]")
-print(df.iloc[:, [1, 3]])  # 返回Series显示第3列
+print(df.iloc[:, 1:3])  # 返回df;显示第1,2列
+print(df.iloc[:, [1, 3]])  # 返回df;显示第1,3列
 
 print("\n---------7.3 iloc之查询一行---------------")
 print("df.iloc[0, :]")
