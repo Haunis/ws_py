@@ -1,0 +1,6 @@
+数据分析流程:
+    提出问题 --> 准备数据 --> 分析数据 --> 获得结论 -->成果可视化
+
+工具： numpy ,pandas, matplotlib
+
+pip install xx装不上,用conda install基本就可以了
