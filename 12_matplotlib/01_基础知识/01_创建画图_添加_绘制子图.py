@@ -16,17 +16,20 @@
     方式2：ax.plot([1, 2, 3], color='r')
 
 """
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt #ok
+from matplotlib import pyplot as plt
 import matplotlib as plt_lib
 
 print("matplotlib文件目录：", plt_lib.matplotlib_fname())  # 查看配置文件目录
 
-# 创建一个空白画布，可以指定画布大小，像素。
-fig = plt.figure(1)  # 返回Figure;
+# 创建一个空白画布
+# fig = plt.figure(1)  # 返回Figure;
+fig = plt.figure(figsize=(20, 8), dpi=90)  # 可以指定画布大小，像素。
 
 print('----------1.fig.add_subplot()-----------------')
 # 创建并选中子图，可以指定子图的行数，列数，与选中图片编号。
 ax = fig.add_subplot(2, 2, 1)  # 返回AxesSubplot;
+plt.title("this is figure 1")
 # ax.plot([1, 2, 3], color='r')  # ok
 plt.plot([1, 2, 3], color='r')
 
@@ -43,6 +46,7 @@ fig, axes = plt.subplots(2, 3)  # axes是二维ndarray;
 print("axes.shape:", axes.shape)  # (2,3)即2行3列的数组
 
 fig.add_subplot(2, 3, 1)  # 添加第一个子图
+plt.title("this is figure 2")
 plt.plot([1, 2, 3, 4], color='r')  # 第一个子图上绘制
 
 axes[0, 1].plot([1, 2, 3, 4], color='g')  # 第二个图上绘制

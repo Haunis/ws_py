@@ -14,8 +14,8 @@ plt常用语法：
 语法运用之sticks():
     设置x轴刻度和标签标签:
     方式1:
-        AxesSubplot.set_xticks(ticks = [0, 5, 10, 15, 20, 25, 30, 40])
-        AxesSubplot.set_xticklabels(labels = ['aa', 'bb', 'cc', 'dd', 'ee', 'ff', 'gg', 'hh'])
+        ax.set_xticks(ticks = [0, 5, 10, 15, 20, 25, 30, 40])
+        ax.set_xticklabels(labels = ['aa', 'bb', 'cc', 'dd', 'ee', 'ff', 'gg', 'hh'])
     方式2：
         plt.xticks(ticks=ticks, labels=labels)
 

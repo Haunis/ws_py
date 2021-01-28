@@ -79,3 +79,9 @@ print("--------------10.列表推导式---------------------")
 temp_list2 = [x for x in range(10)]  # 返回的是个列表
 print("type(temp_list) : ", type(temp_list2))
 print(temp_list2)
+
+print("\n--------------11.切片---------------------")
+li = [i/2 for i in range(24)]
+print("origin:", li)
+
+print("li[::3]:", li[::3])  # 每隔3个取一个
